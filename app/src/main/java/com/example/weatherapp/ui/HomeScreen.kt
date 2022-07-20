@@ -25,11 +25,11 @@ fun HomeScreen() {
                 .fillMaxSize()
                 .padding(
                     horizontal = 18.dp,
-                    vertical = 24.dp
+                    vertical = 32.dp
                 ),
         ) {
             SearchBar()
-            Spacer(modifier = Modifier.height(18.dp))
+            Spacer(modifier = Modifier.height(24.dp))
             WeatherQuickPreviewWidget()
         }
     }
