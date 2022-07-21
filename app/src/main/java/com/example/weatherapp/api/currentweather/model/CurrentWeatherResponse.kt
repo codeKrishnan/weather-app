@@ -16,4 +16,7 @@ data class CurrentWeatherResponse(
     val visibility: Int,
     val weather: List<Weather>,
     val wind: Wind,
+    val clouds: Clouds,
+    val rain: Rain?,
+    val snow: Snow?,
 )
