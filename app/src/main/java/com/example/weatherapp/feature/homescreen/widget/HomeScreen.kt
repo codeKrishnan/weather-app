@@ -12,8 +12,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
-import com.example.weatherapp.ui.widget.SearchBar
-import com.example.weatherapp.ui.widget.WeatherQuickPreviewWidget
+import com.example.weatherapp.feature.homescreen.widget.SearchBar
+import com.example.weatherapp.feature.homescreen.widget.WeatherQuickPreviewWidget
 
 @Composable
 fun HomeScreen() {

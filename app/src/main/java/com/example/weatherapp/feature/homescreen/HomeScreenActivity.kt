@@ -1,4 +1,4 @@
-package com.example.weatherapp
+package com.example.weatherapp.feature.homescreen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import com.example.weatherapp.ui.HomeScreen
 import com.example.weatherapp.ui.theme.WeatherAppTheme
 
-class MainActivity : ComponentActivity() {
+class HomeScreenActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
