@@ -16,7 +16,7 @@ class CurrentWeatherRepositoryImpl(
         latitude: String,
         longitude: String,
     ): Result<CurrentWeatherResponse> =
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             try {
                 val response = currentWeatherService.getCurrentWeather(
                     latitude = "35",
