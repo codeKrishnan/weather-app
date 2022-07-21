@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.feature.homescreen.widget
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,8 +12,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
-import com.example.weatherapp.feature.homescreen.widget.SearchBar
-import com.example.weatherapp.feature.homescreen.widget.WeatherQuickPreviewWidget
 
 @Composable
 fun HomeScreen() {

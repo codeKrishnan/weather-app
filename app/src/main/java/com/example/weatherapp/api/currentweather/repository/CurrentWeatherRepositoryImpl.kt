@@ -7,8 +7,9 @@ import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherR
 import com.example.weatherapp.api.currentweather.service.CurrentWeatherService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class CurrentWeatherRepositoryImpl(
+class CurrentWeatherRepositoryImpl @Inject constructor(
     private val currentWeatherService: CurrentWeatherService,
 ) : CurrentWeatherRepository {
 
