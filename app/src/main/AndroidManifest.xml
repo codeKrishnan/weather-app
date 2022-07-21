@@ -15,7 +15,7 @@
         android:theme="@style/Theme.WeatherApp"
         tools:targetApi="31">
         <activity
-            android:name=".feature.homescreen.HomeScreenActivity"
+            android:name=".feature.favouritelocations.FavouriteLocationsActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.WeatherApp">

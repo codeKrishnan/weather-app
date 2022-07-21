@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.homescreen.widget
+package com.example.weatherapp.feature.favouritelocations.widget
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.ExperimentalFoundationApi

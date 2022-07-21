@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.homescreen.widget
+package com.example.weatherapp.feature.favouritelocations.widget
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

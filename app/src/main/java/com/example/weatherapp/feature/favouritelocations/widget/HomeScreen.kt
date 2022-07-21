@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.homescreen.widget
+package com.example.weatherapp.feature.favouritelocations.widget
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
