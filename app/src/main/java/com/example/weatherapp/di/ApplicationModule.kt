@@ -1,20 +1,27 @@
 package com.example.weatherapp.di
 
 import com.example.weatherapp.api.currentweather.adapter.WeatherTypeEnumAdapter
+import com.example.weatherapp.api.currentweather.repository.CurrentWeatherRepositoryImpl
+import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.api.currentweather.service.CurrentWeatherService
+import com.example.weatherapp.usecase.GetCurrentWeatherUseCaseImpl
+import com.example.weatherapp.usecase.base.GetCurrentWeatherUseCase
 import com.squareup.moshi.Moshi
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
-@Module
+@Module(
+    includes = [ApplicationModule.BindsModule::class]
+)
 class ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideCurrentWeatherRepository(): CurrentWeatherService {
+    fun provideCurrentWeatherService(): CurrentWeatherService {
         val moshi = Moshi.Builder()
             .add(WeatherTypeEnumAdapter)
             .build()
@@ -24,5 +31,20 @@ class ApplicationModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
         return retrofit.create(CurrentWeatherService::class.java)
+    }
+
+
+    @Module
+    internal interface BindsModule {
+
+        @Binds
+        fun bindCurrentWeatherUseCaseImpl(
+            getCurrentWeatherUseCaseImpl: GetCurrentWeatherUseCaseImpl,
+        ): GetCurrentWeatherUseCase
+
+        @Binds
+        fun bindCurrentWeatherRepository(
+            currentWeatherRepositoryImpl: CurrentWeatherRepositoryImpl,
+        ): CurrentWeatherRepository
     }
 }

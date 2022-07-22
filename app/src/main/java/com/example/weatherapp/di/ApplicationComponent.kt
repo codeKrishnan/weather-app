@@ -2,6 +2,7 @@ package com.example.weatherapp.di
 
 import android.content.Context
 import com.example.weatherapp.WeatherApplication
+import com.example.weatherapp.feature.favouritelocations.di.FavouriteLocationsComponent
 import dagger.BindsInstance
 import dagger.Component
 
@@ -16,6 +17,8 @@ interface ApplicationComponent {
             @BindsInstance context: Context,
         ): ApplicationComponent
     }
+
+    fun plus(): FavouriteLocationsComponent.Factory
 
     fun inject(weatherApplication: WeatherApplication)
 }
