@@ -5,7 +5,9 @@ import com.example.weatherapp.WeatherApplication
 import com.example.weatherapp.feature.favouritelocations.di.FavouriteLocationsComponent
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
+@Singleton
 @Component(
     modules = [ApplicationModule::class]
 )

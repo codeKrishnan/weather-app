@@ -11,7 +11,7 @@ import com.example.weatherapp.ui.theme.WeatherAppTheme
 
 class FavouriteLocationsActivity : ComponentActivity() {
 
-    lateinit var favouriteLocationViewModelFactory: FavouriteLocationViewModelFactory
+    lateinit var favouriteLocationViewModelFactory: FavouriteLocationsViewModelFactory
 
     val viewModel: FavouriteLocationsViewModel by viewModels { favouriteLocationViewModelFactory }
 
