@@ -1,8 +1,8 @@
 package com.example.weatherapp.feature.favouritelocations.di
 
+import com.example.weatherapp.di.FeatureScope
 import com.example.weatherapp.feature.favouritelocations.FavouriteLocationsActivity
 import dagger.Subcomponent
-import javax.inject.Scope
 
 @FeatureScope
 @Subcomponent(
@@ -17,9 +17,3 @@ interface FavouriteLocationsComponent {
 
     fun inject(favouriteLocationsActivity: FavouriteLocationsActivity)
 }
-
-
-@Scope
-@MustBeDocumented
-@Retention(AnnotationRetention.RUNTIME)
-annotation class FeatureScope
