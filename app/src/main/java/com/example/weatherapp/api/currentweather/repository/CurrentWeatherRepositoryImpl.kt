@@ -20,8 +20,8 @@ class CurrentWeatherRepositoryImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             try {
                 val response = currentWeatherService.getCurrentWeather(
-                    latitude = "35",
-                    longitude = "139",
+                    latitude = latitude,
+                    longitude = longitude,
                 )
 
                 return@withContext if (response.isSuccessful && response.body() != null) {
@@ -31,7 +31,7 @@ class CurrentWeatherRepositoryImpl @Inject constructor(
                 }
 
             } catch (exception: Exception) {
-                return@withContext Result.Error("Something went wrong")
+                throw exception
             }
         }
 }

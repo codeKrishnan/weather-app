@@ -5,6 +5,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Snow(
-    @Json(name = "snow.3h")
+    @Json(name = "3h")
     val snowForPastThreeHours: Double,
 )

@@ -1,5 +1,7 @@
 package com.example.weatherapp.usecase
 
+import com.example.weatherapp.api.currentweather.Result
+import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
 import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.usecase.base.GetCurrentWeatherUseCase
 import kotlinx.coroutines.Dispatchers
@@ -13,12 +15,11 @@ class GetCurrentWeatherUseCaseImpl @Inject constructor(
     override suspend fun invoke(
         latitude: String,
         longitude: String,
-    ) {
+    ): Result<CurrentWeatherResponse> =
         withContext(Dispatchers.Default) {
-            val result = currentWeatherRepository.getCurrentWeather(
+            return@withContext currentWeatherRepository.getCurrentWeather(
                 latitude = latitude,
                 longitude = longitude,
             )
         }
-    }
 }
