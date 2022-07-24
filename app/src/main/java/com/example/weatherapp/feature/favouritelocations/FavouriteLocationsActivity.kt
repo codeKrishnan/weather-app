@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.example.weatherapp.WeatherApplication
 import com.example.weatherapp.feature.favouritelocations.widget.HomeScreen
-import com.example.weatherapp.ui.theme.WeatherAppTheme
+import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import javax.inject.Inject
 
 
