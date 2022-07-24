@@ -39,7 +39,9 @@ fun HomeScreen(
 
             when (val state = uiState.value) {
                 FavouriteLocationsUIState.Error -> {
-
+                    ErrorIndicator {
+                        favouriteLocationsViewModel.getCurrentWeather()
+                    }
                 }
                 is FavouriteLocationsUIState.Success -> {
                     WeatherQuickPreviewWidget(

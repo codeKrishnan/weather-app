@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Weather App</string>
+    <string name="error_message">Something went wrong on our side.\nWould you like to give another try?</string>
 </resources>

@@ -11,7 +11,7 @@ import com.example.weatherapp.R
 
 @SuppressLint("ConflictingOnColor")
 private val DarkColorPalette = darkColors(
-    primary = Color(color = R.color.grey_background),
+    primary = Purple200,
     primaryVariant = Purple700,
     secondary = Color(color = R.color.grey_cards),
     background = Color(color = R.color.grey_background),
@@ -24,7 +24,7 @@ private val DarkColorPalette = darkColors(
 
 @SuppressLint("ConflictingOnColor")
 private val LightColorPalette = lightColors(
-    primary = Color(color = R.color.grey_background),
+    primary = Purple200,
     primaryVariant = Purple700,
     secondary = Color(color = R.color.grey_cards),
     background = Color(color = R.color.grey_background),
