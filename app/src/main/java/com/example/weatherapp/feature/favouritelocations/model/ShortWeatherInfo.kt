@@ -11,6 +11,7 @@ data class ShortWeatherInfo(
     val cityName: String,
     val windSpeed: String,
     val humidity: String,
+    val weatherType: WeatherType,
 )
 
 fun CurrentWeatherResponse.toShortWeatherInfo(): ShortWeatherInfo {
@@ -22,6 +23,7 @@ fun CurrentWeatherResponse.toShortWeatherInfo(): ShortWeatherInfo {
             cityName = name,
             windSpeed = "${wind.speed}",
             humidity = "${main.humidity}",
+            weatherType = weather.first().main
         )
     }
 }

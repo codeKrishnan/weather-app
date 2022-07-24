@@ -1,30 +1,50 @@
 package com.example.weatherapp.feature.favouritelocations
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.api.currentweather.Result
+import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
+import com.example.weatherapp.feature.favouritelocations.model.toShortWeatherInfo
 import com.example.weatherapp.usecase.base.GetCurrentWeatherUseCase
 import kotlinx.coroutines.launch
+
+sealed class FavouriteLocationsUIState() {
+    object Error : FavouriteLocationsUIState()
+    object Loading : FavouriteLocationsUIState()
+    data class Success(val data: List<ShortWeatherInfo>) : FavouriteLocationsUIState()
+}
 
 class FavouriteLocationsViewModel(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
 ) : ViewModel() {
 
+    private val _uiState: MutableLiveData<FavouriteLocationsUIState> = MutableLiveData()
+
+    val uiState: LiveData<FavouriteLocationsUIState>
+        get() = _uiState
+
     fun getCurrentWeather() {
+        _uiState.postValue(FavouriteLocationsUIState.Loading)
         viewModelScope.launch {
             val result = getCurrentWeatherUseCase(
                 latitude = "35",
                 longitude = "139",
             )
 
-            when(result){
+            when (result) {
                 is Result.Error -> {
-                    println("Failure")
-                    println(result.errorData)
+                    _uiState.postValue(FavouriteLocationsUIState.Error)
                 }
                 is Result.Success -> {
-                    println("Success")
-                    println(result.data)
+                    _uiState.postValue(
+                        FavouriteLocationsUIState.Success(
+                            listOf(
+                                result.data.toShortWeatherInfo()
+                            )
+                        )
+                    )
                 }
             }
         }

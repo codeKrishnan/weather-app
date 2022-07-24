@@ -7,6 +7,7 @@ import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherR
 import com.example.weatherapp.api.currentweather.service.CurrentWeatherService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 class CurrentWeatherRepositoryImpl @Inject constructor(
@@ -31,7 +32,12 @@ class CurrentWeatherRepositoryImpl @Inject constructor(
                 }
 
             } catch (exception: Exception) {
-                throw exception
+                when (exception) {
+                    is SocketTimeoutException -> {
+                        Result.Error("Couldn't fetch current weather: ${exception.message ?: ""}")
+                    }
+                    else -> throw exception
+                }
             }
         }
 }

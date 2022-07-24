@@ -31,26 +31,33 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.R
+import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
+import com.example.weatherapp.feature.favouritelocations.model.WeatherType
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WeatherQuickPreviewWidget() {
+fun WeatherQuickPreviewWidget(
+    shortWeatherItems: List<ShortWeatherInfo>,
+) {
     LazyVerticalGrid(
         cells = GridCells.Adaptive(minSize = 150.dp),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        items(10) {
-            WeatherQuickPreviewCard()
+        items(shortWeatherItems.size) {
+            WeatherQuickPreviewCard(
+                shortWeatherItems[it]
+            )
         }
     }
-
 }
 
 
 @Composable
-private fun WeatherQuickPreviewCard() {
+private fun WeatherQuickPreviewCard(
+    shortWeatherInfo: ShortWeatherInfo,
+) {
     Surface(
         modifier = Modifier
             .aspectRatio(1f)
@@ -70,21 +77,24 @@ private fun WeatherQuickPreviewCard() {
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                Column {
+                Column(
+                    modifier = Modifier
+                        .padding(end = 16.dp)
+                ) {
                     Text(
                         modifier = Modifier
                             .padding(bottom = 8.dp),
-                        text = "22\u00B0",
+                        text = "${shortWeatherInfo.currentTemperature}\u00B0",
                         fontSize = 32.sp,
                         color = colorResource(id = R.color.white_text)
                     )
                     Text(
-                        text = "Austin",
+                        text = shortWeatherInfo.cityName,
                         fontSize = 16.sp,
                         color = colorResource(id = R.color.white_text)
                     )
                     Text(
-                        text = "USA",
+                        text = shortWeatherInfo.countryCode,
                         fontSize = 16.sp,
                         color = colorResource(id = R.color.dim_text)
                     )
@@ -116,8 +126,14 @@ private fun WeatherQuickPreviewCard() {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                IconRepresentation(iconResource = R.drawable.wind)
-                IconRepresentation(iconResource = R.drawable.droplet)
+                IconRepresentation(
+                    iconResource = R.drawable.wind,
+                    text = shortWeatherInfo.windSpeed
+                )
+                IconRepresentation(
+                    iconResource = R.drawable.droplet,
+                    text = shortWeatherInfo.humidity
+                )
             }
         }
     }
@@ -127,6 +143,7 @@ private fun WeatherQuickPreviewCard() {
 @Composable
 fun IconRepresentation(
     @DrawableRes iconResource: Int,
+    text: String,
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -141,7 +158,7 @@ fun IconRepresentation(
             tint = colorResource(id = R.color.blue_icon_tint)
         )
         Text(
-            text = "27",
+            text = text,
             color = colorResource(id = R.color.white_text)
         )
 
@@ -151,11 +168,31 @@ fun IconRepresentation(
 @Preview(showBackground = true)
 @Composable
 fun WeatherQuickPreviewPreview() {
-    WeatherQuickPreviewCard()
+    WeatherQuickPreviewCard(
+        ShortWeatherInfo(
+            currentTemperature = "25",
+            countryCode = "IND",
+            cityName = "Delhi",
+            windSpeed = "2",
+            humidity = "23",
+            weatherType = WeatherType.Clear
+        )
+    )
 }
 
 @Preview
 @Composable
 fun WeatherQuickPreviewWidgetPreview() {
-    WeatherQuickPreviewWidget()
+    WeatherQuickPreviewWidget(
+        shortWeatherItems = listOf(
+            ShortWeatherInfo(
+                currentTemperature = "25",
+                countryCode = "IND",
+                cityName = "Delhi",
+                windSpeed = "2",
+                humidity = "23",
+                weatherType = WeatherType.Clear
+            )
+        )
+    )
 }
