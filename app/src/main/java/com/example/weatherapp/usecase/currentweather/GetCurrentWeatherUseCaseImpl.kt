@@ -1,9 +1,9 @@
-package com.example.weatherapp.usecase
+package com.example.weatherapp.usecase.currentweather
 
-import com.example.weatherapp.api.currentweather.Result
+import com.example.weatherapp.api.Result
 import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
 import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
-import com.example.weatherapp.usecase.base.GetCurrentWeatherUseCase
+import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

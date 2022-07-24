@@ -5,8 +5,8 @@ import com.example.weatherapp.api.currentweather.adapter.WeatherTypeEnumAdapter
 import com.example.weatherapp.api.currentweather.repository.CurrentWeatherRepositoryImpl
 import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.api.currentweather.service.CurrentWeatherService
-import com.example.weatherapp.usecase.GetCurrentWeatherUseCaseImpl
-import com.example.weatherapp.usecase.base.GetCurrentWeatherUseCase
+import com.example.weatherapp.usecase.currentweather.GetCurrentWeatherUseCaseImpl
+import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.squareup.moshi.Moshi
 import dagger.Binds
 import dagger.Module

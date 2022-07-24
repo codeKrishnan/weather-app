@@ -2,7 +2,7 @@ package com.example.weatherapp.feature.favouritelocations
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.weatherapp.usecase.base.GetCurrentWeatherUseCase
+import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import javax.inject.Inject
 
 class FavouriteLocationsViewModelFactory @Inject constructor(

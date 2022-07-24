@@ -1,6 +1,6 @@
 package com.example.weatherapp.api.currentweather.repository.base
 
-import com.example.weatherapp.api.currentweather.Result
+import com.example.weatherapp.api.Result
 import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
 
 interface CurrentWeatherRepository {
