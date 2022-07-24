@@ -8,6 +8,7 @@ import com.example.weatherapp.api.currentweather.Result
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.toShortWeatherInfo
 import com.example.weatherapp.usecase.base.GetCurrentWeatherUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 sealed class FavouriteLocationsUIState() {
@@ -28,6 +29,7 @@ class FavouriteLocationsViewModel(
     fun getCurrentWeather() {
         _uiState.postValue(FavouriteLocationsUIState.Loading)
         viewModelScope.launch {
+            delay(3000)
             val result = getCurrentWeatherUseCase(
                 latitude = "35",
                 longitude = "139",

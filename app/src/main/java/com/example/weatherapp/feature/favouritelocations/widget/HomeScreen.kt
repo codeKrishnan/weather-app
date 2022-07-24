@@ -39,6 +39,7 @@ fun HomeScreen(
 
             when (val state = uiState.value) {
                 FavouriteLocationsUIState.Error -> {
+
                 }
                 is FavouriteLocationsUIState.Success -> {
                     WeatherQuickPreviewWidget(
@@ -46,6 +47,7 @@ fun HomeScreen(
                     )
                 }
                 FavouriteLocationsUIState.Loading, null -> {
+                    LoadingIndicator()
                 }
             }
         }
