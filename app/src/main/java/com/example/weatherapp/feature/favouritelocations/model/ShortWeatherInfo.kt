@@ -1,5 +1,6 @@
 package com.example.weatherapp.feature.favouritelocations.model
 
+import com.example.weatherapp.R
 import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
 
 /**
@@ -36,4 +37,16 @@ enum class WeatherType {
     Clear,
     Clouds,
     Unknown,
+}
+
+fun WeatherType.getIcon(): Int {
+    return when (this) {
+        WeatherType.Thunderstorm -> R.drawable.thunderstorm
+        WeatherType.Rain -> R.drawable.rainy
+        WeatherType.Drizzle -> R.drawable.drizzle
+        WeatherType.Snow -> R.drawable.snowflake
+        WeatherType.Clear -> R.drawable.sunny
+        WeatherType.Clouds -> R.drawable.cloudy
+        WeatherType.Unknown -> R.drawable.sunny
+    }
 }

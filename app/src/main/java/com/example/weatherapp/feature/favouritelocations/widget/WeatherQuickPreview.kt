@@ -34,6 +34,7 @@ import com.example.weatherapp.baseui.widget.BrightTextLarge
 import com.example.weatherapp.baseui.widget.DimText
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
+import com.example.weatherapp.feature.favouritelocations.model.getIcon
 import kotlin.math.roundToInt
 
 
@@ -112,7 +113,9 @@ private fun WeatherQuickPreviewCard(
                                     drawRect(colorGradient, blendMode = BlendMode.SrcAtop)
                                 }
                             },
-                        painter = painterResource(id = R.drawable.cloudy),
+                        painter = painterResource(
+                            id = shortWeatherInfo.weatherType.getIcon()
+                        ),
                         contentDescription = "Weather image",
                     )
                 }
