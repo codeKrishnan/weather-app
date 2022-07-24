@@ -12,7 +12,7 @@ import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCa
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import kotlinx.coroutines.launch
 
-sealed class FavouriteLocationsUIState() {
+sealed class FavouriteLocationsUIState {
     object Error : FavouriteLocationsUIState()
     object Loading : FavouriteLocationsUIState()
     data class Success(val data: List<ShortWeatherInfo>) : FavouriteLocationsUIState()
@@ -35,6 +35,7 @@ class FavouriteLocationsViewModel(
         longitude: String = "139",
     ) {
         _uiState.postValue(FavouriteLocationsUIState.Loading)
+        clearSearchRecommendations()
         viewModelScope.launch {
             val result = getCurrentWeatherUseCase(
                 latitude = latitude,
@@ -67,5 +68,9 @@ class FavouriteLocationsViewModel(
                 locationSearchState.locationDetails.value = result.data
             }
         }
+    }
+
+    private fun clearSearchRecommendations() {
+        locationSearchState.locationDetails.value = emptyList()
     }
 }

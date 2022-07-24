@@ -1,9 +1,11 @@
 package com.example.weatherapp.feature.favouritelocations.widget.search
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -41,23 +43,27 @@ fun SearchBox(
         SearchBar(
             onQueryChanged = onQueryChanged
         )
-
-        LazyColumn(
-            modifier = Modifier
-                .autoComplete(locationSearchDesignScope = state)
-                .background(color = colorResource(id = R.color.grey_background)),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            with(state.locationDetails.value) {
-                items(size) { index ->
-                    BrightText(
-                        modifier = Modifier
-                            .clickable {
-                                onLocationClick(this@with[index])
-                            }
-                            .padding(vertical = 16.dp),
-                        text = this@with[index].cityName
-                    )
+        AnimatedVisibility(visible = !state.shouldWrapContentHeight) {
+            LazyColumn(
+                modifier = Modifier
+                    .autoComplete(locationSearchDesignScope = state)
+                    .background(color = colorResource(id = R.color.grey_background)),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                with(state.locationDetails.value) {
+                    items(size) { index ->
+                        Box(
+                            modifier = Modifier
+                                .clickable {
+                                    onLocationClick(this@with[index])
+                                }
+                                .padding(vertical = 16.dp)
+                        ) {
+                            BrightText(
+                                text = this@with[index].cityName
+                            )
+                        }
+                    }
                 }
             }
         }

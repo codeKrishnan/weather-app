@@ -25,7 +25,6 @@ class FavouriteLocationsActivity : ComponentActivity() {
                 HomeScreen(viewModel)
             }
         }
-        viewModel.getCurrentWeather()
     }
 
     private fun setUpDagger() {
