@@ -27,7 +27,7 @@ class CurrentWeatherRepositoryImpl @Inject constructor(
                 return@withContext if (response.isSuccessful && response.body() != null) {
                     Result.Success(response.body()!!)
                 } else {
-                    Result.Error("API request was unsuccessful")
+                    Result.Error("Couldn't fetch current weather: ${response.errorBody()}")
                 }
 
             } catch (exception: Exception) {
