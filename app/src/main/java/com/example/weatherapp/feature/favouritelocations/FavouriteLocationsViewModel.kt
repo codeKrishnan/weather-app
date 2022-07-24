@@ -60,7 +60,9 @@ class FavouriteLocationsViewModel(
 
     fun getRecommendationsForLocationSearch(query: String) {
         viewModelScope.launch {
-            val result = getPlacesForSearchQueryUseCase(query)
+            val result = getPlacesForSearchQueryUseCase(
+                searchQuery = query.ifEmpty { " " }
+            )
             if (result is Result.Success) {
                 locationSearchState.locationDetails.value = result.data
             }
