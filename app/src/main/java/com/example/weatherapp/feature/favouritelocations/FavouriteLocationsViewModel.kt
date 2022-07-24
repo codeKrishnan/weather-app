@@ -62,32 +62,7 @@ class FavouriteLocationsViewModel(
         viewModelScope.launch {
             val result = getPlacesForSearchQueryUseCase(query)
             if (result is Result.Success) {
-                with(locationSearchState.locationDetails) {
-                    clear()
-                    addAll(
-                        this
-                    )
-                }
-            }
-        }
-    }
-
-    fun getLocationDetailsForQuery(query: String) {
-        viewModelScope.launch {
-            when (val result = getPlacesForSearchQueryUseCase(query)) {
-                is Result.Success -> {
-                    with(result.data) {
-                        if (isNotEmpty()) {
-                            getCurrentWeather(
-                                latitude = first().latitude,
-                                longitude = first().longitude
-                            )
-                        }
-                    }
-                }
-                is Result.Error -> {
-                    _uiState.postValue(FavouriteLocationsUIState.Error)
-                }
+                locationSearchState.locationDetails.value = result.data
             }
         }
     }

@@ -12,21 +12,21 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.feature.favouritelocations.model.LocationDetail
 
-interface LocationSearchScope : LocationSearchDesignScope {
-    val locationDetails: List<LocationDetail>
-}
-
 interface LocationSearchDesignScope {
     var boxWidthPercentage: Float
     var shouldWrapContentHeight: Boolean
     var boxMaxHeight: Dp
-    var boxBorderStroke: BorderStroke
     var boxShape: Shape
+    var boxBorderStroke: BorderStroke
 }
 
-class LocationSearchState : LocationSearchScope {
+class LocationSearchState : LocationSearchDesignScope {
 
-    override val locationDetails: MutableList<LocationDetail> = mutableListOf()
+    var locationDetails = mutableStateOf(emptyList<LocationDetail>())
+        set(value) {
+            field = value
+            shouldWrapContentHeight = value.value.isNotEmpty()
+        }
 
     override var boxWidthPercentage by mutableStateOf(.9f)
     override var shouldWrapContentHeight by mutableStateOf(false)

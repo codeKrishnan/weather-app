@@ -43,8 +43,8 @@ fun HomeScreen(
                         longitude = locationDetail.longitude
                     )
                 },
-                onDoneActionClick = { query ->
-                    viewModel.getLocationDetailsForQuery(query = query)
+                onQueryChanged = { query ->
+                    viewModel.getRecommendationsForLocationSearch(query = query)
                 }
             )
             Spacer(modifier = Modifier.height(24.dp))

@@ -14,8 +14,8 @@ data class LocationDetail(
 
 fun GeocodingAPIResponse.toLocationDetail(): LocationDetail {
     return LocationDetail(
-        cityName = this.name,
-        latitude = this.lat,
-        longitude = this.lon,
+        cityName = "$name, $country",
+        latitude = lat,
+        longitude = lon,
     )
 }

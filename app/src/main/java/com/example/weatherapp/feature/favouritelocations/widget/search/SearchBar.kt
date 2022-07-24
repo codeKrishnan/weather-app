@@ -28,7 +28,7 @@ import com.example.weatherapp.R
 
 @Composable
 fun SearchBar(
-    onDoneActionClick: (String) -> Unit,
+    onQueryChanged: (String) -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -56,12 +56,13 @@ fun SearchBar(
             },
             onValueChange = { query ->
                 text = query
+                onQueryChanged(query)
             },
             keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done,
+                imeAction = ImeAction.Go,
                 keyboardType = KeyboardType.Text
             ),
-            keyboardActions = KeyboardActions(onDone = { onDoneActionClick(text) }),
+            keyboardActions = KeyboardActions(onDone = { }),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = colorResource(id = R.color.white_text),
                 disabledTextColor = Color.Transparent,
@@ -83,6 +84,6 @@ fun SearchBar(
 @Composable
 fun SearchBarPreview() {
     SearchBar(
-        onDoneActionClick = {}
+        onQueryChanged = {}
     )
 }
