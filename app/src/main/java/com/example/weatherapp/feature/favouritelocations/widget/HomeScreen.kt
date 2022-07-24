@@ -16,12 +16,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.feature.favouritelocations.FavouriteLocationsUIState
 import com.example.weatherapp.feature.favouritelocations.FavouriteLocationsViewModel
+import com.example.weatherapp.feature.favouritelocations.widget.search.SearchBox
 
 @Composable
 fun HomeScreen(
-    favouriteLocationsViewModel: FavouriteLocationsViewModel,
+    viewModel: FavouriteLocationsViewModel,
 ) {
-    val uiState = favouriteLocationsViewModel.uiState.observeAsState()
+    val uiState = viewModel.uiState.observeAsState()
 
     Surface(
         color = colorResource(id = R.color.grey_background)
@@ -34,13 +35,24 @@ fun HomeScreen(
                     vertical = 32.dp
                 ),
         ) {
-            SearchBar()
+            SearchBox(
+                locationSearchState = viewModel.locationSearchState,
+                onLocationClick = { locationDetail ->
+                    viewModel.getCurrentWeather(
+                        latitude = locationDetail.latitude,
+                        longitude = locationDetail.longitude
+                    )
+                },
+                onDoneActionClick = { query ->
+                    viewModel.getLocationDetailsForQuery(query = query)
+                }
+            )
             Spacer(modifier = Modifier.height(24.dp))
 
             when (val state = uiState.value) {
                 FavouriteLocationsUIState.Error -> {
                     ErrorIndicator {
-                        favouriteLocationsViewModel.getCurrentWeather()
+                        viewModel.getCurrentWeather()
                     }
                 }
                 is FavouriteLocationsUIState.Success -> {
@@ -55,7 +67,6 @@ fun HomeScreen(
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable

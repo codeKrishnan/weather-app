@@ -1,8 +1,10 @@
-package com.example.weatherapp.feature.favouritelocations.widget
+package com.example.weatherapp.feature.favouritelocations.widget.search
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -19,24 +21,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherapp.R
 
 @Composable
-fun SearchBar() {
+fun SearchBar(
+    onDoneActionClick: (String) -> Unit,
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround
     ) {
-        var text by remember { mutableStateOf("") }
+
         Icon(
             modifier = Modifier,
             painter = painterResource(id = R.drawable.search),
             contentDescription = "Search Icon",
             tint = colorResource(id = R.color.blue_icon_tint)
         )
+
+        var text by remember { mutableStateOf("") }
         TextField(
             value = text,
             singleLine = true,
@@ -46,8 +54,14 @@ fun SearchBar() {
                     color = colorResource(id = R.color.dim_text)
                 )
             },
-            onValueChange = { text = it },
-
+            onValueChange = { query ->
+                text = query
+            },
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Done,
+                keyboardType = KeyboardType.Text
+            ),
+            keyboardActions = KeyboardActions(onDone = { onDoneActionClick(text) }),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = colorResource(id = R.color.white_text),
                 disabledTextColor = Color.Transparent,
@@ -68,5 +82,7 @@ fun SearchBar() {
 @Preview(showBackground = true)
 @Composable
 fun SearchBarPreview() {
-    SearchBar()
+    SearchBar(
+        onDoneActionClick = {}
+    )
 }

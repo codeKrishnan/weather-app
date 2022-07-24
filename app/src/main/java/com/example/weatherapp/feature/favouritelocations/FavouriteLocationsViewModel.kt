@@ -7,8 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.api.Result
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.toShortWeatherInfo
+import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
-import kotlinx.coroutines.delay
+import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import kotlinx.coroutines.launch
 
 sealed class FavouriteLocationsUIState() {
@@ -19,6 +20,7 @@ sealed class FavouriteLocationsUIState() {
 
 class FavouriteLocationsViewModel(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
+    private val getPlacesForSearchQueryUseCase: GetPlacesForSearchQueryUseCase,
 ) : ViewModel() {
 
     private val _uiState: MutableLiveData<FavouriteLocationsUIState> = MutableLiveData()
@@ -26,13 +28,17 @@ class FavouriteLocationsViewModel(
     val uiState: LiveData<FavouriteLocationsUIState>
         get() = _uiState
 
-    fun getCurrentWeather() {
+    val locationSearchState = LocationSearchState()
+
+    fun getCurrentWeather(
+        latitude: String = "35",
+        longitude: String = "139",
+    ) {
         _uiState.postValue(FavouriteLocationsUIState.Loading)
         viewModelScope.launch {
-            delay(3000)
             val result = getCurrentWeatherUseCase(
-                latitude = "35",
-                longitude = "139",
+                latitude = latitude,
+                longitude = longitude,
             )
 
             when (result) {
@@ -47,6 +53,40 @@ class FavouriteLocationsViewModel(
                             )
                         )
                     )
+                }
+            }
+        }
+    }
+
+    fun getRecommendationsForLocationSearch(query: String) {
+        viewModelScope.launch {
+            val result = getPlacesForSearchQueryUseCase(query)
+            if (result is Result.Success) {
+                with(locationSearchState.locationDetails) {
+                    clear()
+                    addAll(
+                        this
+                    )
+                }
+            }
+        }
+    }
+
+    fun getLocationDetailsForQuery(query: String) {
+        viewModelScope.launch {
+            when (val result = getPlacesForSearchQueryUseCase(query)) {
+                is Result.Success -> {
+                    with(result.data) {
+                        if (isNotEmpty()) {
+                            getCurrentWeather(
+                                latitude = first().latitude,
+                                longitude = first().longitude
+                            )
+                        }
+                    }
+                }
+                is Result.Error -> {
+                    _uiState.postValue(FavouriteLocationsUIState.Error)
                 }
             }
         }
