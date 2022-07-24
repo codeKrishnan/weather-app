@@ -6,8 +6,9 @@ import com.example.weatherapp.api.geocoding.repository.base.GeoCodingRepository
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class GetPlacesForSearchQueryUseCaseImpl(
+class GetPlacesForSearchQueryUseCaseImpl @Inject constructor(
     private val geoCodingRepository: GeoCodingRepository,
 ) : GetPlacesForSearchQueryUseCase {
 

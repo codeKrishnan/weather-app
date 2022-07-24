@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 
-class CurrentWeatherRepositoryImpl @Inject constructor(
+class CurrentWeatherAPIRepositoryImpl @Inject constructor(
     private val currentWeatherService: CurrentWeatherService,
 ) : CurrentWeatherRepository {
 

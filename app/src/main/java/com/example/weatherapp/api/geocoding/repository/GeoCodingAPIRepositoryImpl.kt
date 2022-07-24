@@ -7,8 +7,9 @@ import com.example.weatherapp.api.geocoding.service.GeoCodingAPIService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.SocketTimeoutException
+import javax.inject.Inject
 
-class GeoCodingAPIRepositoryImpl(
+class GeoCodingAPIRepositoryImpl @Inject constructor(
     private val geoCodingAPIService: GeoCodingAPIService,
 ) : GeoCodingRepository {
 

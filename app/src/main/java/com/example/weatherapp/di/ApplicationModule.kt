@@ -2,11 +2,16 @@ package com.example.weatherapp.di
 
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.api.currentweather.adapter.WeatherTypeEnumAdapter
-import com.example.weatherapp.api.currentweather.repository.CurrentWeatherRepositoryImpl
+import com.example.weatherapp.api.currentweather.repository.CurrentWeatherAPIRepositoryImpl
 import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.api.currentweather.service.CurrentWeatherService
+import com.example.weatherapp.api.geocoding.repository.GeoCodingAPIRepositoryImpl
+import com.example.weatherapp.api.geocoding.repository.base.GeoCodingRepository
+import com.example.weatherapp.api.geocoding.service.GeoCodingAPIService
 import com.example.weatherapp.usecase.currentweather.GetCurrentWeatherUseCaseImpl
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
+import com.example.weatherapp.usecase.geocoding.GetPlacesForSearchQueryUseCaseImpl
+import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import com.squareup.moshi.Moshi
 import dagger.Binds
 import dagger.Module
@@ -56,17 +61,40 @@ class ApplicationModule {
         return retrofit.create(CurrentWeatherService::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun provideGeoCodingService(
+        okHttpClient: OkHttpClient,
+    ): GeoCodingAPIService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://api.openweathermap.org")
+            .client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+        return retrofit.create(GeoCodingAPIService::class.java)
+    }
+
     @Module
     internal interface BindsModule {
 
         @Binds
-        fun bindCurrentWeatherUseCaseImpl(
+        fun bindCurrentWeatherUseCase(
             getCurrentWeatherUseCaseImpl: GetCurrentWeatherUseCaseImpl,
         ): GetCurrentWeatherUseCase
 
         @Binds
-        fun bindCurrentWeatherRepository(
-            currentWeatherRepositoryImpl: CurrentWeatherRepositoryImpl,
+        fun bindCurrentWeatherAPIRepository(
+            currentWeatherAPIRepositoryImpl: CurrentWeatherAPIRepositoryImpl,
         ): CurrentWeatherRepository
+
+        @Binds
+        fun bindGetPlacesForSearchQueryUseCase(
+            getPlacesForSearchQueryUseCaseImpl: GetPlacesForSearchQueryUseCaseImpl,
+        ): GetPlacesForSearchQueryUseCase
+
+        @Binds
+        fun bindGeoCodingAPIRepository(
+            geoCodingAPIRepositoryImpl: GeoCodingAPIRepositoryImpl,
+        ): GeoCodingRepository
     }
 }
