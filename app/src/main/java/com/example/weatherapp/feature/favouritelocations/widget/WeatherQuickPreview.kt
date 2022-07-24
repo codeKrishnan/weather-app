@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import com.example.weatherapp.R
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
+import kotlin.math.roundToInt
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -84,7 +85,7 @@ private fun WeatherQuickPreviewCard(
                     Text(
                         modifier = Modifier
                             .padding(bottom = 8.dp),
-                        text = "${shortWeatherInfo.currentTemperature}\u00B0",
+                        text = "${shortWeatherInfo.currentTemperature.roundToInt()}\u00B0",
                         fontSize = 32.sp,
                         color = colorResource(id = R.color.white_text)
                     )
@@ -109,7 +110,6 @@ private fun WeatherQuickPreviewCard(
 
                     Icon(
                         modifier = Modifier
-                            .padding(top = 12.dp)
                             .graphicsLayer(alpha = 0.99f)
                             .drawWithCache {
                                 onDrawWithContent {
@@ -170,7 +170,7 @@ fun IconRepresentation(
 fun WeatherQuickPreviewPreview() {
     WeatherQuickPreviewCard(
         ShortWeatherInfo(
-            currentTemperature = "25",
+            currentTemperature = 25.00,
             countryCode = "IND",
             cityName = "Delhi",
             windSpeed = "2",
@@ -186,7 +186,15 @@ fun WeatherQuickPreviewWidgetPreview() {
     WeatherQuickPreviewWidget(
         shortWeatherItems = listOf(
             ShortWeatherInfo(
-                currentTemperature = "25",
+                currentTemperature = 25.00,
+                countryCode = "IND",
+                cityName = "Delhi",
+                windSpeed = "2",
+                humidity = "23",
+                weatherType = WeatherType.Clear
+            ),
+            ShortWeatherInfo(
+                currentTemperature = 25.00,
                 countryCode = "IND",
                 cityName = "Delhi",
                 windSpeed = "2",

@@ -6,7 +6,7 @@ import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
  * Contains a subset of important weather information.
  */
 data class ShortWeatherInfo(
-    val currentTemperature: String,
+    val currentTemperature: Double,
     val countryCode: String,
     val cityName: String,
     val windSpeed: String,
@@ -18,7 +18,7 @@ fun CurrentWeatherResponse.toShortWeatherInfo(): ShortWeatherInfo {
 
     with(this) {
         return ShortWeatherInfo(
-            currentTemperature = "${main.temp}",
+            currentTemperature = main.temp,
             countryCode = sys.country,
             cityName = name,
             windSpeed = "${wind.speed}",
