@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.favouritelocations
+package com.example.weatherapp.feature.base
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,12 +10,12 @@ import com.example.weatherapp.feature.favouritelocations.widget.HomeScreen
 import javax.inject.Inject
 
 
-class FavouriteLocationsActivity : ComponentActivity() {
+class BaseNavigationActivity : ComponentActivity() {
 
     @Inject
-    lateinit var favouriteLocationViewModelFactory: FavouriteLocationsViewModelFactory
+    lateinit var favouriteLocationViewModelFactory: BaseNavigationViewModelFactory
 
-    private val viewModel: FavouriteLocationsViewModel by viewModels { favouriteLocationViewModelFactory }
+    private val viewModel: BaseNavigationViewModel by viewModels { favouriteLocationViewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

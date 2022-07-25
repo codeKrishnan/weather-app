@@ -2,7 +2,7 @@ package com.example.weatherapp.di
 
 import android.content.Context
 import com.example.weatherapp.WeatherApplication
-import com.example.weatherapp.feature.favouritelocations.di.FavouriteLocationsComponent
+import com.example.weatherapp.feature.base.di.BaseNavigationComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -20,7 +20,7 @@ interface ApplicationComponent {
         ): ApplicationComponent
     }
 
-    fun plus(): FavouriteLocationsComponent.Factory
+    fun plus(): BaseNavigationComponent.Factory
 
     fun inject(weatherApplication: WeatherApplication)
 }

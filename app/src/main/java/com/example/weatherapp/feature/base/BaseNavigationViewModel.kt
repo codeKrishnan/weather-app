@@ -1,24 +1,18 @@
-package com.example.weatherapp.feature.favouritelocations
+package com.example.weatherapp.feature.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.api.common.Result
-import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.toShortWeatherInfo
+import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import kotlinx.coroutines.launch
 
-sealed class FavouriteLocationsUIState {
-    object Error : FavouriteLocationsUIState()
-    object Loading : FavouriteLocationsUIState()
-    data class Success(val data: List<ShortWeatherInfo>) : FavouriteLocationsUIState()
-}
-
-class FavouriteLocationsViewModel(
+class BaseNavigationViewModel(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
     private val getPlacesForSearchQueryUseCase: GetPlacesForSearchQueryUseCase,
 ) : ViewModel() {

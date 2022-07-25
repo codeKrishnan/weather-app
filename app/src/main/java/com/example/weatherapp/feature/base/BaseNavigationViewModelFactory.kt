@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.favouritelocations
+package com.example.weatherapp.feature.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -6,13 +6,13 @@ import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCa
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import javax.inject.Inject
 
-class FavouriteLocationsViewModelFactory @Inject constructor(
+class BaseNavigationViewModelFactory @Inject constructor(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
     private val getPlacesForSearchQueryUseCase: GetPlacesForSearchQueryUseCase,
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return FavouriteLocationsViewModel(
+        return BaseNavigationViewModel(
             getCurrentWeatherUseCase = getCurrentWeatherUseCase,
             getPlacesForSearchQueryUseCase = getPlacesForSearchQueryUseCase,
         ) as T

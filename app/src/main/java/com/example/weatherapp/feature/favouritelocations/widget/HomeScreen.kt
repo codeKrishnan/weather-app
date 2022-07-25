@@ -14,13 +14,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.weatherapp.R
-import com.example.weatherapp.feature.favouritelocations.FavouriteLocationsUIState
-import com.example.weatherapp.feature.favouritelocations.FavouriteLocationsViewModel
+import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
+import com.example.weatherapp.feature.base.BaseNavigationViewModel
 import com.example.weatherapp.feature.favouritelocations.widget.search.SearchBox
 
 @Composable
 fun HomeScreen(
-    viewModel: FavouriteLocationsViewModel,
+    viewModel: BaseNavigationViewModel,
 ) {
     val uiState = viewModel.uiState.observeAsState()
 
