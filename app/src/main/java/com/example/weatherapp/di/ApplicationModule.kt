@@ -8,10 +8,15 @@ import com.example.weatherapp.api.currentweather.service.CurrentWeatherService
 import com.example.weatherapp.api.geocoding.repository.GeoCodingAPIRepositoryImpl
 import com.example.weatherapp.api.geocoding.repository.base.GeoCodingRepository
 import com.example.weatherapp.api.geocoding.service.GeoCodingAPIService
+import com.example.weatherapp.api.weatherforecast.repository.WeatherForecastAPIRepositoryImpl
+import com.example.weatherapp.api.weatherforecast.repository.base.WeatherForecastRepository
+import com.example.weatherapp.api.weatherforecast.service.WeatherForecastService
 import com.example.weatherapp.usecase.currentweather.GetCurrentWeatherUseCaseImpl
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.geocoding.GetPlacesForSearchQueryUseCaseImpl
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
+import com.example.weatherapp.usecase.weatherforecast.GetWeatherForecastForLocationUseCaseImpl
+import com.example.weatherapp.usecase.weatherforecast.base.GetWeatherForecastForLocationUseCase
 import com.squareup.moshi.Moshi
 import dagger.Binds
 import dagger.Module
@@ -74,6 +79,19 @@ class ApplicationModule {
         return retrofit.create(GeoCodingAPIService::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun provideWeatherForecastApiService(
+        okHttpClient: OkHttpClient,
+    ): WeatherForecastService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://api.openweathermap.org")
+            .client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+        return retrofit.create(WeatherForecastService::class.java)
+    }
+
     @Module
     internal interface BindsModule {
 
@@ -96,5 +114,15 @@ class ApplicationModule {
         fun bindGeoCodingAPIRepository(
             geoCodingAPIRepositoryImpl: GeoCodingAPIRepositoryImpl,
         ): GeoCodingRepository
+
+        @Binds
+        fun bindWeatherForecastAPIRepository(
+            weatherForecastAPIRepositoryImpl: WeatherForecastAPIRepositoryImpl,
+        ): WeatherForecastRepository
+
+        @Binds
+        fun bindGetWeatherForecastForLocationUseCase(
+            getWeatherForecastForLocationUseCaseImpl: GetWeatherForecastForLocationUseCaseImpl,
+        ): GetWeatherForecastForLocationUseCase
     }
 }
