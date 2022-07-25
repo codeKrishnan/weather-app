@@ -2,6 +2,7 @@ package com.example.weatherapp.usecase.currentweather.base
 
 import com.example.weatherapp.api.common.Result
 import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
+import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 
 /**
  * Use case to retrieve the current weather of a location.
@@ -9,7 +10,6 @@ import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
 interface GetCurrentWeatherUseCase {
 
     suspend operator fun invoke(
-        latitude: String,
-        longitude: String,
-    ): Result<CurrentWeatherResponse>
+        coordinates: List<Coordinates>,
+    ): Result<List<CurrentWeatherResponse>>
 }

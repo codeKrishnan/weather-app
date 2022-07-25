@@ -28,6 +28,7 @@ class BaseNavigationActivity : ComponentActivity() {
                 }
             }
         }
+        viewModel.getCurrentWeather()
     }
 
     private fun setUpDagger() {

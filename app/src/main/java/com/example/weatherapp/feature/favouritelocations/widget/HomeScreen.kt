@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.feature.base.BaseNavigationViewModel
+import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 import com.example.weatherapp.feature.favouritelocations.widget.search.SearchBox
 
@@ -39,8 +40,12 @@ fun HomeScreen(
                 locationSearchState = viewModel.locationSearchState,
                 onLocationClick = { locationDetail ->
                     viewModel.getCurrentWeather(
-                        latitude = locationDetail.latitude,
-                        longitude = locationDetail.longitude
+                        listOf(
+                            Coordinates(
+                                latitude = locationDetail.latitude,
+                                longitude = locationDetail.longitude
+                            )
+                        )
                     )
                 },
                 onQueryChanged = { query ->

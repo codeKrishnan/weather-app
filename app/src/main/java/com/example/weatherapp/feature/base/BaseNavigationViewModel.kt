@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.api.common.Result
 import com.example.weatherapp.feature.favouritelocations.model.toShortWeatherInfo
+import com.example.weatherapp.feature.favouritelocations.util.Coordinates
+import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
@@ -25,15 +27,13 @@ class BaseNavigationViewModel(
     val locationSearchState = LocationSearchState()
 
     fun getCurrentWeather(
-        latitude: String = "35",
-        longitude: String = "139",
+        coordinates: List<Coordinates> = FavouriteLocations.defaultLocations
     ) {
         _uiState.postValue(FavouriteLocationsUIState.Loading)
         clearSearchRecommendations()
         viewModelScope.launch {
             val result = getCurrentWeatherUseCase(
-                latitude = latitude,
-                longitude = longitude,
+                coordinates
             )
 
             when (result) {
@@ -43,9 +43,9 @@ class BaseNavigationViewModel(
                 is Result.Success -> {
                     _uiState.postValue(
                         FavouriteLocationsUIState.Success(
-                            listOf(
-                                result.data.toShortWeatherInfo()
-                            )
+                            result.data.map {
+                                it.toShortWeatherInfo()
+                            }
                         )
                     )
                 }
