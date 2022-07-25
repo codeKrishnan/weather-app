@@ -5,9 +5,9 @@ import com.example.weatherapp.api.common.Result
 import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
 import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.api.currentweather.service.CurrentWeatherService
+import com.squareup.moshi.JsonDataException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 class CurrentWeatherAPIRepositoryImpl @Inject constructor(
@@ -33,10 +33,10 @@ class CurrentWeatherAPIRepositoryImpl @Inject constructor(
 
             } catch (exception: Exception) {
                 when (exception) {
-                    is SocketTimeoutException -> {
+                    is JsonDataException -> throw exception
+                    else -> {
                         Result.Error("Couldn't fetch current weather: ${exception.message ?: ""}")
                     }
-                    else -> throw exception
                 }
             }
         }

@@ -4,9 +4,9 @@ import com.example.weatherapp.api.common.Result
 import com.example.weatherapp.api.geocoding.model.GeocodingAPIResponse
 import com.example.weatherapp.api.geocoding.repository.base.GeoCodingRepository
 import com.example.weatherapp.api.geocoding.service.GeoCodingAPIService
+import com.squareup.moshi.JsonDataException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 class GeoCodingAPIRepositoryImpl @Inject constructor(
@@ -31,10 +31,10 @@ class GeoCodingAPIRepositoryImpl @Inject constructor(
 
             } catch (exception: Exception) {
                 when (exception) {
-                    is SocketTimeoutException -> {
+                    is JsonDataException -> throw exception
+                    else -> {
                         Result.Error("Couldn't fetch locations: ${exception.message ?: ""}")
                     }
-                    else -> throw exception
                 }
             }
         }
