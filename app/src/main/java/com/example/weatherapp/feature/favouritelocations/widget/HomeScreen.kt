@@ -32,8 +32,10 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(
-                    horizontal = 18.dp,
-                    vertical = 32.dp
+                    start = 18.dp,
+                    end = 18.dp,
+                    top = 12.dp,
+                    bottom = 24.dp,
                 ),
         ) {
             SearchBox(
@@ -52,7 +54,7 @@ fun HomeScreen(
                     viewModel.getRecommendationsForLocationSearch(query = query)
                 }
             )
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(18.dp))
 
             when (val state = uiState.value) {
                 FavouriteLocationsUIState.Error -> {
