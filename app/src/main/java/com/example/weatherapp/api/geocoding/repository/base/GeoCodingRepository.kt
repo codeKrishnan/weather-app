@@ -1,6 +1,6 @@
 package com.example.weatherapp.api.geocoding.repository.base
 
-import com.example.weatherapp.api.Result
+import com.example.weatherapp.api.common.Result
 import com.example.weatherapp.api.geocoding.model.GeocodingAPIResponse
 
 interface GeoCodingRepository {

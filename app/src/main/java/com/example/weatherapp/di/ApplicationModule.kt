@@ -1,7 +1,7 @@
 package com.example.weatherapp.di
 
 import com.example.weatherapp.BuildConfig
-import com.example.weatherapp.api.currentweather.adapter.WeatherTypeEnumAdapter
+import com.example.weatherapp.api.common.adapter.WeatherTypeEnumAdapter
 import com.example.weatherapp.api.currentweather.repository.CurrentWeatherAPIRepositoryImpl
 import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.api.currentweather.service.CurrentWeatherService

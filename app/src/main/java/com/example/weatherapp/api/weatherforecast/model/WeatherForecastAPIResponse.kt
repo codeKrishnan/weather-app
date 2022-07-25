@@ -1,10 +1,10 @@
-package com.example.weatherapp.api.weatherforecast
+package com.example.weatherapp.api.weatherforecast.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class WeatherForecastResponse(
+data class WeatherForecastAPIResponse(
     val city: City,
     @Json(name = "cnt")
     val timeStampsReturned: Int,

@@ -1,6 +1,6 @@
 package com.example.weatherapp.usecase.currentweather.base
 
-import com.example.weatherapp.api.Result
+import com.example.weatherapp.api.common.Result
 import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
 
 /**

@@ -1,6 +1,6 @@
 package com.example.weatherapp.usecase.geocoding
 
-import com.example.weatherapp.api.Result
+import com.example.weatherapp.api.common.Result
 import com.example.weatherapp.api.geocoding.repository.base.GeoCodingRepository
 import com.example.weatherapp.feature.favouritelocations.model.LocationDetail
 import com.example.weatherapp.feature.favouritelocations.model.toLocationDetail

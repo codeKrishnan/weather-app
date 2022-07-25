@@ -1,7 +1,7 @@
 package com.example.weatherapp.api.currentweather.repository
 
 
-import com.example.weatherapp.api.Result
+import com.example.weatherapp.api.common.Result
 import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
 import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.api.currentweather.service.CurrentWeatherService

@@ -1,4 +1,4 @@
-package com.example.weatherapp.api
+package com.example.weatherapp.api.common
 
 /**
  * Result of an API request

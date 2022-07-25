@@ -1,4 +1,4 @@
-package com.example.weatherapp.api.currentweather.adapter
+package com.example.weatherapp.api.common.adapter
 
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
 import com.squareup.moshi.FromJson
