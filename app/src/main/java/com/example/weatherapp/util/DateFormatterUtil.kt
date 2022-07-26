@@ -17,7 +17,7 @@ fun String.toTimeInText(): String {
         "hh a",
         Locale.getDefault()
     )
-    return timeFormat.format(this.toDate()!!)
+    return timeFormat.format(this.toDate()!!).uppercase()
 }
 
 fun String.toWeekDayName(): String {

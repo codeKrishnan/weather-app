@@ -10,13 +10,16 @@ import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
+import com.example.weatherapp.feature.weatherforecast.model.toWeatherForecastDetails
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
+import com.example.weatherapp.usecase.weatherforecast.base.GetWeatherForecastForLocationUseCase
 import kotlinx.coroutines.launch
 
 class BaseNavigationViewModel(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
     private val getPlacesForSearchQueryUseCase: GetPlacesForSearchQueryUseCase,
+    private val getWeatherForecastForLocationUseCase: GetWeatherForecastForLocationUseCase,
 ) : ViewModel() {
 
     private val _uiState: MutableLiveData<FavouriteLocationsUIState> = MutableLiveData()
@@ -27,7 +30,7 @@ class BaseNavigationViewModel(
     val locationSearchState = LocationSearchState()
 
     fun getCurrentWeather(
-        coordinates: List<Coordinates> = FavouriteLocations.defaultLocations
+        coordinates: List<Coordinates> = FavouriteLocations.defaultLocations,
     ) {
         _uiState.postValue(FavouriteLocationsUIState.Loading)
         clearSearchRecommendations()
@@ -51,6 +54,10 @@ class BaseNavigationViewModel(
                 }
             }
         }
+        getWeatherForecastOfLocation(
+            coordinates.first().latitude,
+            coordinates.first().longitude
+        )
     }
 
     fun getRecommendationsForLocationSearch(query: String) {
@@ -60,6 +67,28 @@ class BaseNavigationViewModel(
             )
             if (result is Result.Success) {
                 locationSearchState.locationDetails.value = result.data
+            }
+        }
+    }
+
+    fun getWeatherForecastOfLocation(
+        latitude: String,
+        longitude: String,
+    ) {
+        viewModelScope.launch {
+            val result = getWeatherForecastForLocationUseCase(
+                latitude = latitude,
+                longitude = longitude
+            )
+
+            when (result) {
+                is Result.Error -> {
+                    println(result.errorData)
+                }
+                is Result.Success -> {
+                    println(result.data)
+                    println(result.data.toWeatherForecastDetails())
+                }
             }
         }
     }
