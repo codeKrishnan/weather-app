@@ -20,43 +20,44 @@ import com.example.weatherapp.feature.weatherforecast.screen.widget.QuickWeather
 
 @Composable
 fun WeatherForecastScreen() {
-    Column{
-
-    }
-    Column(
-        modifier = androidx.compose.ui.Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.grey_background))
-            .padding(
-                vertical = 32.dp,
-                horizontal = 32.dp,
-            )
-    ) {
-        BrightText(
-            text = "San Fransisco",
-            fontSize = 20.sp
-        )
-        BrightText(
-            text = "18°",
-            fontSize = 64.sp
-        )
-        BrightText(
+    Column {
+        Column(
             modifier = androidx.compose.ui.Modifier
-                .background(
-                    color = colorResource(id = R.color.violet_pill_background),
-                    shape = RoundedCornerShape(18.dp)
-                )
+                .fillMaxSize()
+                .background(colorResource(id = R.color.grey_background))
                 .padding(
-                    horizontal = 12.dp,
-                    vertical = 8.dp
-                ),
-            text = "Cloudy",
-
+                    vertical = 32.dp,
+                    horizontal = 32.dp,
+                )
+        ) {
+            BrightText(
+                text = "San Fransisco",
+                fontSize = 20.sp
             )
-        Spacer(modifier = Modifier.height(30.dp))
-        QuickWeatherInfoBar()
-        Spacer(modifier = Modifier.height(60.dp))
-        DetailedForecastInfoWidget()
+            BrightText(
+                text = "18°",
+                fontSize = 64.sp
+            )
+            BrightText(
+                modifier = androidx.compose.ui.Modifier
+                    .background(
+                        color = colorResource(id = R.color.violet_pill_background),
+                        shape = RoundedCornerShape(18.dp)
+                    )
+                    .padding(
+                        horizontal = 12.dp,
+                        vertical = 8.dp
+                    ),
+                text = "Cloudy",
+
+                )
+            Spacer(modifier = Modifier.height(30.dp))
+            QuickWeatherInfoBar()
+            Spacer(modifier = Modifier.height(60.dp))
+            Column {
+                DetailedForecastInfoWidget()
+            }
+        }
     }
 }
 

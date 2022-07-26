@@ -3,10 +3,13 @@ package com.example.weatherapp.feature.weatherforecast.screen.widget
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
@@ -42,10 +45,35 @@ fun DetailedWeatherInfoRow() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .background(colorResource(id = R.color.grey_background))
     ) {
         DimText(text = "Today")
-        LazyRow {
-            items(8) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            BrightText(
+                modifier = Modifier
+                    .width(100.dp),
+                text = "Monday"
+            )
+            GradientIcon(
+                modifier = Modifier.size(20.dp),
+                weatherType = WeatherType.Clear
+            )
+            Row {
+                BrightText(text = "19°")
+                Spacer(modifier = Modifier.size(8.dp))
+                DimText(text = "15°")
+            }
+        }
+        LazyRow(
+            modifier = Modifier
+                .padding(end = 30.dp)
+        ) {
+            items(10) {
                 SingleWeatherInfoItem()
             }
         }
