@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.feature.base.screen.widget.NavigationBar
-import com.example.weatherapp.feature.favouritelocations.widget.HomeScreen
+import com.example.weatherapp.feature.favouritelocations.screen.widget.HomeScreen
 
 @Composable
 fun BaseNavigationScreen(

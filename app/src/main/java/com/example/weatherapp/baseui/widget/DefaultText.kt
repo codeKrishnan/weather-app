@@ -4,6 +4,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.R
 
@@ -11,11 +12,12 @@ import com.example.weatherapp.R
 fun DimText(
     modifier: Modifier = Modifier,
     text: String,
+    fontSize: TextUnit = 16.sp,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        fontSize = 16.sp,
+        fontSize = fontSize,
         color = colorResource(id = R.color.dim_text)
     )
 }
@@ -24,11 +26,12 @@ fun DimText(
 fun BrightText(
     modifier: Modifier = Modifier,
     text: String,
+    fontSize: TextUnit = 16.sp,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        fontSize = 16.sp,
+        fontSize = fontSize,
         color = colorResource(id = R.color.white_text)
     )
 }

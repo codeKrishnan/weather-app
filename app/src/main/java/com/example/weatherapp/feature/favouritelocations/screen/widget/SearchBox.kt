@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.favouritelocations.widget.search
+package com.example.weatherapp.feature.favouritelocations.screen.widget.search
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background

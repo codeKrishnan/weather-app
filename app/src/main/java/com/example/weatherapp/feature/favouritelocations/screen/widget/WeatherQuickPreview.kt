@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.favouritelocations.widget
+package com.example.weatherapp.feature.favouritelocations.screen.widget
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -19,11 +19,6 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.graphics.BlendMode
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,9 +27,9 @@ import com.example.weatherapp.R
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.baseui.widget.BrightTextLarge
 import com.example.weatherapp.baseui.widget.DimText
+import com.example.weatherapp.baseui.widget.GradientIcon
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
-import com.example.weatherapp.feature.favouritelocations.model.getIcon
 import kotlin.math.roundToInt
 
 
@@ -99,36 +94,18 @@ private fun WeatherQuickPreviewCard(
                 Column(
                     verticalArrangement = Arrangement.Top
                 ) {
-
-                    val colorGradient = Brush.verticalGradient(
-                        listOf(Color.Blue, Color.Magenta)
-                    )
-
-                    Icon(
-                        modifier = Modifier
-                            .graphicsLayer(alpha = 0.99f)
-                            .drawWithCache {
-                                onDrawWithContent {
-                                    drawContent()
-                                    drawRect(colorGradient, blendMode = BlendMode.SrcAtop)
-                                }
-                            },
-                        painter = painterResource(
-                            id = shortWeatherInfo.weatherType.getIcon()
-                        ),
-                        contentDescription = "Weather image",
-                    )
+                    GradientIcon(weatherType = shortWeatherInfo.weatherType)
                 }
             }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                IconRepresentation(
+                IconText(
                     iconResource = R.drawable.wind,
                     text = shortWeatherInfo.windSpeed
                 )
-                IconRepresentation(
+                IconText(
                     iconResource = R.drawable.droplet,
                     text = shortWeatherInfo.humidity
                 )
@@ -137,9 +114,8 @@ private fun WeatherQuickPreviewCard(
     }
 }
 
-
 @Composable
-fun IconRepresentation(
+fun IconText(
     @DrawableRes iconResource: Int,
     text: String,
 ) {
