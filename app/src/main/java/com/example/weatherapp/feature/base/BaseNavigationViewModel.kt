@@ -11,6 +11,8 @@ import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
 import com.example.weatherapp.feature.weatherforecast.model.toWeatherForecastDetails
+import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastState
+import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastUIState
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import com.example.weatherapp.usecase.weatherforecast.base.GetWeatherForecastForLocationUseCase
@@ -22,17 +24,23 @@ class BaseNavigationViewModel(
     private val getWeatherForecastForLocationUseCase: GetWeatherForecastForLocationUseCase,
 ) : ViewModel() {
 
-    private val _uiState: MutableLiveData<FavouriteLocationsUIState> = MutableLiveData()
-
+    private val _favouriteLocationUIState: MutableLiveData<FavouriteLocationsUIState> =
+        MutableLiveData()
     val uiState: LiveData<FavouriteLocationsUIState>
-        get() = _uiState
+        get() = _favouriteLocationUIState
+
+    private val _weatherForecastUIState: MutableLiveData<WeatherForecastUIState> = MutableLiveData()
+    val weatherForecastUIState: LiveData<WeatherForecastUIState>
+        get() = _weatherForecastUIState
+
 
     val locationSearchState = LocationSearchState()
+    val weatherForecastState = WeatherForecastState()
 
     fun getCurrentWeather(
         coordinates: List<Coordinates> = FavouriteLocations.defaultLocations,
     ) {
-        _uiState.postValue(FavouriteLocationsUIState.Loading)
+        _favouriteLocationUIState.postValue(FavouriteLocationsUIState.Loading)
         clearSearchRecommendations()
         viewModelScope.launch {
             val result = getCurrentWeatherUseCase(
@@ -41,10 +49,10 @@ class BaseNavigationViewModel(
 
             when (result) {
                 is Result.Error -> {
-                    _uiState.postValue(FavouriteLocationsUIState.Error)
+                    _favouriteLocationUIState.postValue(FavouriteLocationsUIState.Error)
                 }
                 is Result.Success -> {
-                    _uiState.postValue(
+                    _favouriteLocationUIState.postValue(
                         FavouriteLocationsUIState.Success(
                             result.data.map {
                                 it.toShortWeatherInfo()
@@ -75,6 +83,7 @@ class BaseNavigationViewModel(
         latitude: String,
         longitude: String,
     ) {
+        _weatherForecastUIState.value = WeatherForecastUIState.Loading
         viewModelScope.launch {
             val result = getWeatherForecastForLocationUseCase(
                 latitude = latitude,
@@ -82,12 +91,12 @@ class BaseNavigationViewModel(
             )
 
             when (result) {
-                is Result.Error -> {
-                    println(result.errorData)
-                }
                 is Result.Success -> {
-                    println(result.data)
-                    println(result.data.toWeatherForecastDetails())
+                    _weatherForecastUIState.value =
+                        WeatherForecastUIState.Success(result.data.toWeatherForecastDetails())
+                }
+                is Result.Error -> {
+                    _weatherForecastUIState.value = WeatherForecastUIState.Error
                 }
             }
         }

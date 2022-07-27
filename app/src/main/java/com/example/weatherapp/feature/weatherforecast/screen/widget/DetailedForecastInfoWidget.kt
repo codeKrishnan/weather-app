@@ -8,17 +8,28 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherapp.R
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
+import com.example.weatherapp.feature.weatherforecast.model.WeatherSnippet
+import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastState
 
 @Composable
-fun DetailedForecastInfoWidget() {
+fun DetailedForecastInfoWidget(
+    forecastState: WeatherForecastState,
+    weatherForecastDetails: Map<String, List<WeatherSnippet>>,
+) {
     LazyColumn(
         modifier = Modifier
             .background(
                 colorResource(id = R.color.grey_background)
             )
     ) {
-        items(4) {
-            DetailedWeatherInfoRow()
+        items(weatherForecastDetails.size) { index ->
+            DetailedWeatherInfoRow(
+                selectedDay = forecastState.selectedDay.value,
+                onClick = {
+                    forecastState.selectedDay.value = it
+                },
+                rowDetails = weatherForecastDetails.entries.toList()[index],
+            )
         }
     }
 }
@@ -27,7 +38,10 @@ fun DetailedForecastInfoWidget() {
 @Composable
 private fun DetailedForecastInfoWidgetPreview() {
     WeatherAppTheme {
-        DetailedForecastInfoWidget()
+        DetailedForecastInfoWidget(
+            forecastState = WeatherForecastState(),
+            weatherForecastDetails = emptyMap()
+        )
     }
 }
 

@@ -18,9 +18,10 @@ import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.baseui.widget.GradientIcon
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
+import com.example.weatherapp.feature.weatherforecast.model.WeatherSnippet
 
 @Composable
-fun SingleWeatherInfoItem() {
+fun SingleWeatherInfoItem(weatherSnippet: WeatherSnippet) {
     Column(
         modifier = Modifier
             .background(
@@ -38,13 +39,13 @@ fun SingleWeatherInfoItem() {
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        BrightText(text = "10 AM")
+        BrightText(text = weatherSnippet.time)
         GradientIcon(
             modifier = Modifier.size(30.dp),
-            weatherType = WeatherType.Clouds
+            weatherType = weatherSnippet.weatherType
         )
         BrightText(
-            text = "19°",
+            text = "${weatherSnippet.temperature}°",
             fontSize = 24.sp
         )
     }
@@ -54,6 +55,12 @@ fun SingleWeatherInfoItem() {
 @Composable
 private fun SingleWeatherInfoItemPreview() {
     WeatherAppTheme {
-        SingleWeatherInfoItem()
+        SingleWeatherInfoItem(
+            weatherSnippet = WeatherSnippet(
+                time = "10 AM",
+                temperature = "20°",
+                weatherType = WeatherType.Clear
+            )
+        )
     }
 }

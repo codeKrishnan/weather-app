@@ -1,5 +1,6 @@
 package com.example.weatherapp.feature.weatherforecast.screen.widget
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,21 +23,32 @@ import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.baseui.widget.DimText
 import com.example.weatherapp.baseui.widget.GradientIcon
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
+import com.example.weatherapp.feature.weatherforecast.model.WeatherSnippet
 
 @Composable
-fun DetailedWeatherInfoRow() {
+fun DetailedWeatherInfoRow(
+    selectedDay: String,
+    onClick: (String) -> Unit,
+    rowDetails: Map.Entry<String, List<WeatherSnippet>>,
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(colorResource(id = R.color.grey_background))
     ) {
         MaxAndMinTemperatureBar(
-            onClick = {}
+            onClick = {
+                onClick(it)
+            }
         )
-        DimText(text = "Today")
-        LazyRow() {
-            items(10) {
-                SingleWeatherInfoItem()
+        AnimatedVisibility(visible = rowDetails.key == selectedDay) {
+            DimText(text = rowDetails.key)
+            LazyRow() {
+                items(rowDetails.value.size) {
+                    SingleWeatherInfoItem(
+                        rowDetails.value[it]
+                    )
+                }
             }
         }
     }
@@ -76,6 +88,18 @@ fun MaxAndMinTemperatureBar(
 @Composable
 private fun DetailedWeatherInfoRawPreview() {
     WeatherAppTheme {
-        DetailedWeatherInfoRow()
+        DetailedWeatherInfoRow(
+            selectedDay = "",
+            onClick = {},
+            rowDetails = mapOf(
+                "" to listOf(
+                    WeatherSnippet(
+                        time = "",
+                        temperature = "",
+                        weatherType = WeatherType.Clear
+                    )
+                )
+            ).entries.toList()[0]
+        )
     }
 }

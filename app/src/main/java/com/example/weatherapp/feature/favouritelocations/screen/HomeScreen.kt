@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.favouritelocations.screen.widget
+package com.example.weatherapp.feature.favouritelocations.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +15,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.feature.base.BaseNavigationViewModel
+import com.example.weatherapp.feature.favouritelocations.screen.widget.ErrorIndicator
+import com.example.weatherapp.feature.favouritelocations.screen.widget.LoadingIndicator
+import com.example.weatherapp.feature.favouritelocations.screen.widget.SearchBox
+import com.example.weatherapp.feature.favouritelocations.screen.widget.WeatherQuickPreviewWidget
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 

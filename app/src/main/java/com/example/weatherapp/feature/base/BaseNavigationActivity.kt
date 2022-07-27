@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import com.example.weatherapp.WeatherApplication
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
-import com.example.weatherapp.feature.favouritelocations.screen.widget.HomeScreen
+import com.example.weatherapp.feature.favouritelocations.screen.HomeScreen
 import javax.inject.Inject
 
 
