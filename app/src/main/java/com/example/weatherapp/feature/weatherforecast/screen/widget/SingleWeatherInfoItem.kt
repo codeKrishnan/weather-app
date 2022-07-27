@@ -58,7 +58,7 @@ private fun SingleWeatherInfoItemPreview() {
         SingleWeatherInfoItem(
             weatherSnippet = WeatherSnippet(
                 time = "10 AM",
-                temperature = "20°",
+                temperature = "20",
                 weatherType = WeatherType.Clear
             )
         )

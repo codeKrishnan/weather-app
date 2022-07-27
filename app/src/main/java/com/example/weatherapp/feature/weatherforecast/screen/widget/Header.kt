@@ -10,28 +10,30 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.R
 import com.example.weatherapp.baseui.widget.BrightText
+import com.example.weatherapp.feature.weatherforecast.model.WeatherForecastDetails
 
 @Composable
-fun Header() {
-    BrightText(
-        text = "San Fransisco",
-        fontSize = 20.sp
-    )
-    BrightText(
-        text = "18°",
-        fontSize = 64.sp
-    )
-    BrightText(
-        modifier = Modifier
-            .background(
-                color = colorResource(id = R.color.violet_pill_background),
-                shape = RoundedCornerShape(18.dp)
-            )
-            .padding(
-                horizontal = 12.dp,
-                vertical = 8.dp
-            ),
-        text = "Cloudy",
-
+fun Header(weatherForecastDetails: WeatherForecastDetails) {
+    with(weatherForecastDetails) {
+        BrightText(
+            text = cityName,
+            fontSize = 20.sp
         )
+        BrightText(
+            text = "To Fill°",
+            fontSize = 64.sp
+        )
+        BrightText(
+            modifier = Modifier
+                .background(
+                    color = colorResource(id = R.color.violet_pill_background),
+                    shape = RoundedCornerShape(18.dp)
+                )
+                .padding(
+                    horizontal = 12.dp,
+                    vertical = 8.dp
+                ),
+            text = weatherForecastDetails.quickWeatherInfo.weatherDescription,
+        )
+    }
 }

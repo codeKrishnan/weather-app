@@ -1,6 +1,5 @@
 package com.example.weatherapp.feature.weatherforecast.screen.widget
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -36,12 +35,8 @@ fun DetailedWeatherInfoRow(
             .fillMaxWidth()
             .background(colorResource(id = R.color.grey_background))
     ) {
-        MaxAndMinTemperatureBar(
-            onClick = {
-                onClick(it)
-            }
-        )
-        AnimatedVisibility(visible = rowDetails.key == selectedDay) {
+
+        if (rowDetails.key == selectedDay) {
             DimText(text = rowDetails.key)
             LazyRow() {
                 items(rowDetails.value.size) {
@@ -50,19 +45,28 @@ fun DetailedWeatherInfoRow(
                     )
                 }
             }
+        } else {
+            MaxAndMinTemperatureBar(
+                onClick = {
+                    onClick(it)
+                },
+                day = rowDetails.key
+            )
         }
     }
 }
 
 @Composable
 fun MaxAndMinTemperatureBar(
+    day: String,
+    temperature: Pair<String, String> = Pair("", ""),
     onClick: (String) -> Unit,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                onClick("Monday")
+                onClick(day)
             },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -70,16 +74,16 @@ fun MaxAndMinTemperatureBar(
         BrightText(
             modifier = Modifier
                 .width(100.dp),
-            text = "Monday"
+            text = day
         )
         GradientIcon(
             modifier = Modifier.size(30.dp),
             weatherType = WeatherType.Clear
         )
         Row {
-            BrightText(text = "19°")
+            BrightText(text = temperature.first)
             Spacer(modifier = Modifier.size(8.dp))
-            DimText(text = "15°")
+            DimText(text = temperature.second)
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.weatherapp.feature.weatherforecast.screen.widget
 import androidx.compose.foundation.background
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,6 +17,10 @@ fun DetailedForecastInfoWidget(
     forecastState: WeatherForecastState,
     weatherForecastDetails: Map<String, List<WeatherSnippet>>,
 ) {
+    val selectedDay = remember {
+        forecastState.selectedDay
+    }
+
     LazyColumn(
         modifier = Modifier
             .background(
@@ -24,9 +29,9 @@ fun DetailedForecastInfoWidget(
     ) {
         items(weatherForecastDetails.size) { index ->
             DetailedWeatherInfoRow(
-                selectedDay = forecastState.selectedDay.value,
+                selectedDay = selectedDay.value,
                 onClick = {
-                    forecastState.selectedDay.value = it
+                    selectedDay.value = it
                 },
                 rowDetails = weatherForecastDetails.entries.toList()[index],
             )

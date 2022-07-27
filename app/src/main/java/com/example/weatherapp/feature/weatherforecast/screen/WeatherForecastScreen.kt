@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,10 +28,6 @@ fun WeatherForecastScreen(
 ) {
     val uiState = viewModel.weatherForecastUIState.observeAsState()
 
-    val forecastState = remember {
-        viewModel.weatherForecastState
-    }
-
     when (val result = uiState.value) {
         is WeatherForecastUIState.Success -> {
             Column(
@@ -44,12 +39,16 @@ fun WeatherForecastScreen(
                         horizontal = 32.dp,
                     )
             ) {
-                Header()
+                Header(
+                    weatherForecastDetails = result.data
+                )
                 Spacer(modifier = Modifier.height(30.dp))
-                QuickWeatherInfoBar()
+                QuickWeatherInfoBar(
+                    result.data.quickWeatherInfo
+                )
                 Spacer(modifier = Modifier.height(60.dp))
                 DetailedForecastInfoWidget(
-                    forecastState,
+                    viewModel.weatherForecastState,
                     result.data.weatherForecastDetails
                 )
             }
