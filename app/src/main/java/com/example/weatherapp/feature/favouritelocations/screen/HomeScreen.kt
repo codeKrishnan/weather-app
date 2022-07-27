@@ -25,6 +25,7 @@ import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
 @Composable
 fun HomeScreen(
     viewModel: BaseNavigationViewModel,
+    onWeatherCardClicked: (Coordinates) -> Unit,
 ) {
     val uiState = viewModel.uiState.observeAsState()
 
@@ -67,7 +68,8 @@ fun HomeScreen(
                 }
                 is FavouriteLocationsUIState.Success -> {
                     WeatherQuickPreviewWidget(
-                        state.data
+                        shortWeatherItems = state.data,
+                        onClick = onWeatherCardClicked,
                     )
                 }
                 FavouriteLocationsUIState.Loading, null -> {
@@ -81,5 +83,8 @@ fun HomeScreen(
 @Preview(showBackground = true)
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen(viewModel())
+    HomeScreen(
+        viewModel = viewModel(),
+        onWeatherCardClicked = {}
+    )
 }

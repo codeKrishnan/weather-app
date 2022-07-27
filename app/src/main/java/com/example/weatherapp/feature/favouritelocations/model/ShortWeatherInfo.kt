@@ -2,11 +2,13 @@ package com.example.weatherapp.feature.favouritelocations.model
 
 import com.example.weatherapp.R
 import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
+import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 
 /**
  * Contains a subset of important weather information.
  */
 data class ShortWeatherInfo(
+    val coordinates: Coordinates,
     val currentTemperature: Double,
     val countryCode: String,
     val cityName: String,
@@ -19,6 +21,10 @@ fun CurrentWeatherResponse.toShortWeatherInfo(): ShortWeatherInfo {
 
     with(this) {
         return ShortWeatherInfo(
+            coordinates = Coordinates(
+                latitude = coord.lat,
+                longitude = coord.lon
+            ),
             currentTemperature = main.temp,
             countryCode = sys.country,
             cityName = name,

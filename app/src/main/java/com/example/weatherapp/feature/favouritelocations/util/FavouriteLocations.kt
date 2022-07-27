@@ -1,9 +1,13 @@
 package com.example.weatherapp.feature.favouritelocations.util
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 class Coordinates(
     val latitude: String,
     val longitude: String,
-)
+) : Parcelable
 
 object FavouriteLocations {
 

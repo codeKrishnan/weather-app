@@ -30,7 +30,10 @@ fun BaseNavigationScreen(
 private fun BaseNavigationScreenPreview() {
     WeatherAppTheme {
         BaseNavigationScreen {
-            HomeScreen(viewModel())
+            HomeScreen(
+                viewModel = viewModel(),
+                onWeatherCardClicked = {}
+            )
         }
     }
 }

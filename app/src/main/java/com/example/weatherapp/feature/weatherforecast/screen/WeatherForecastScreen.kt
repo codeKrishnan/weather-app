@@ -15,8 +15,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.weatherapp.R
+import com.example.weatherapp.feature.favouritelocations.screen.widget.ErrorIndicator
+import com.example.weatherapp.feature.favouritelocations.screen.widget.LoadingIndicator
 import com.example.weatherapp.feature.weatherforecast.WeatherForecastViewModel
 import com.example.weatherapp.feature.weatherforecast.screen.widget.DetailedForecastInfoWidget
+import com.example.weatherapp.feature.weatherforecast.screen.widget.Header
 import com.example.weatherapp.feature.weatherforecast.screen.widget.QuickWeatherInfoBar
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastUIState
 
@@ -52,10 +55,12 @@ fun WeatherForecastScreen(
             }
         }
         WeatherForecastUIState.Loading -> {
-
+            LoadingIndicator()
         }
         WeatherForecastUIState.Error, null -> {
+            ErrorIndicator {
 
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.weatherapp.feature.favouritelocations.screen.widget
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,6 +31,7 @@ import com.example.weatherapp.baseui.widget.DimText
 import com.example.weatherapp.baseui.widget.GradientIcon
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
+import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import kotlin.math.roundToInt
 
 
@@ -37,6 +39,7 @@ import kotlin.math.roundToInt
 @Composable
 fun WeatherQuickPreviewWidget(
     shortWeatherItems: List<ShortWeatherInfo>,
+    onClick: (Coordinates) -> Unit
 ) {
     LazyVerticalGrid(
         cells = GridCells.Adaptive(minSize = 150.dp),
@@ -45,7 +48,8 @@ fun WeatherQuickPreviewWidget(
     ) {
         items(shortWeatherItems.size) {
             WeatherQuickPreviewCard(
-                shortWeatherItems[it]
+                shortWeatherItems[it],
+                onClick
             )
         }
     }
@@ -55,10 +59,14 @@ fun WeatherQuickPreviewWidget(
 @Composable
 private fun WeatherQuickPreviewCard(
     shortWeatherInfo: ShortWeatherInfo,
+    onClick: (Coordinates) -> Unit,
 ) {
     Surface(
         modifier = Modifier
             .aspectRatio(1f)
+            .clickable {
+                onClick(shortWeatherInfo.coordinates)
+            }
             .padding(8.dp)
             .wrapContentSize(),
         color = colorResource(id = R.color.grey_cards),
@@ -142,14 +150,19 @@ fun IconText(
 @Composable
 fun WeatherQuickPreviewPreview() {
     WeatherQuickPreviewCard(
-        ShortWeatherInfo(
+        shortWeatherInfo = ShortWeatherInfo(
+            coordinates = Coordinates(
+                latitude = "12",
+                longitude = "24"
+            ),
             currentTemperature = 25.00,
             countryCode = "IND",
             cityName = "Delhi",
             windSpeed = "2",
             humidity = "23",
             weatherType = WeatherType.Clear
-        )
+        ),
+        onClick = {}
     )
 }
 
@@ -159,6 +172,10 @@ fun WeatherQuickPreviewWidgetPreview() {
     WeatherQuickPreviewWidget(
         shortWeatherItems = listOf(
             ShortWeatherInfo(
+                coordinates = Coordinates(
+                    latitude = "12",
+                    longitude = "12"
+                ),
                 currentTemperature = 25.00,
                 countryCode = "IND",
                 cityName = "Delhi",
@@ -167,6 +184,10 @@ fun WeatherQuickPreviewWidgetPreview() {
                 weatherType = WeatherType.Clear
             ),
             ShortWeatherInfo(
+                coordinates = Coordinates(
+                    latitude = "12",
+                    longitude = "12"
+                ),
                 currentTemperature = 25.00,
                 countryCode = "IND",
                 cityName = "Delhi",
@@ -174,6 +195,7 @@ fun WeatherQuickPreviewWidgetPreview() {
                 humidity = "23",
                 weatherType = WeatherType.Clear
             )
-        )
+        ),
+        onClick = {}
     )
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.api.common.Result
-import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
+import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.weatherforecast.model.toWeatherForecastDetails
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastState
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastUIState
@@ -16,13 +16,6 @@ class WeatherForecastViewModel(
     private val getWeatherForecastForLocationUseCase: GetWeatherForecastForLocationUseCase,
 ) : ViewModel() {
 
-    init {
-        getWeatherForecastOfLocation(
-            FavouriteLocations.defaultLocations.first().latitude,
-            FavouriteLocations.defaultLocations.first().longitude
-        )
-    }
-
     private val _weatherForecastUIState: MutableLiveData<WeatherForecastUIState> = MutableLiveData()
     val weatherForecastUIState: LiveData<WeatherForecastUIState>
         get() = _weatherForecastUIState
@@ -30,14 +23,13 @@ class WeatherForecastViewModel(
     val weatherForecastState = WeatherForecastState()
 
     fun getWeatherForecastOfLocation(
-        latitude: String,
-        longitude: String,
+        coordinates: Coordinates,
     ) {
         _weatherForecastUIState.value = WeatherForecastUIState.Loading
         viewModelScope.launch {
             val result = getWeatherForecastForLocationUseCase(
-                latitude = latitude,
-                longitude = longitude
+                latitude = coordinates.latitude,
+                longitude = coordinates.longitude,
             )
 
             when (result) {

@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.weatherforecast.screen
+package com.example.weatherapp.feature.weatherforecast.screen.widget
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding

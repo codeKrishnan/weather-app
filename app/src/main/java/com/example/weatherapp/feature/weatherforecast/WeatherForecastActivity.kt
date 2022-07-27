@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import com.example.weatherapp.WeatherApplication
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
+import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.weatherforecast.screen.WeatherForecastScreen
 import javax.inject.Inject
 
@@ -16,9 +17,16 @@ class WeatherForecastActivity : ComponentActivity() {
 
     companion object {
 
+        private const val KEY_COORDINATES = "KEY_COORDINATES"
+
         fun newIntent(
             activity: Activity,
-        ): Intent = Intent(activity, WeatherForecastActivity::class.java)
+            coordinates: Coordinates,
+        ): Intent {
+            return Intent(activity, WeatherForecastActivity::class.java).apply {
+                putExtra(KEY_COORDINATES, coordinates)
+            }
+        }
     }
 
     @Inject
@@ -26,9 +34,13 @@ class WeatherForecastActivity : ComponentActivity() {
 
     private val viewModel: WeatherForecastViewModel by viewModels { weatherForecastViewModelFactory }
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpDagger()
+        val coordinates =
+            requireNotNull(intent.extras?.getParcelable<Coordinates>(KEY_COORDINATES))
+
         setContent {
             WeatherAppTheme {
                 BaseNavigationScreen {
@@ -36,6 +48,9 @@ class WeatherForecastActivity : ComponentActivity() {
                 }
             }
         }
+        viewModel.getWeatherForecastOfLocation(
+            coordinates = coordinates
+        )
     }
 
     private fun setUpDagger() {
