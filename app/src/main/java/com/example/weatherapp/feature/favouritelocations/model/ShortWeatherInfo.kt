@@ -15,6 +15,8 @@ data class ShortWeatherInfo(
     val windSpeed: String,
     val humidity: String,
     val weatherType: WeatherType,
+    val weatherDescription: String,
+    val pressure: String,
 )
 
 fun WeatherAPIResponse.toShortWeatherInfo(): ShortWeatherInfo {
@@ -30,7 +32,9 @@ fun WeatherAPIResponse.toShortWeatherInfo(): ShortWeatherInfo {
             cityName = name,
             windSpeed = "${wind.speed}",
             humidity = "${main.humidity}",
-            weatherType = weather.first().main
+            weatherType = weather.first().main,
+            weatherDescription = weather.first().description,
+            pressure = main.pressure
         )
     }
 }

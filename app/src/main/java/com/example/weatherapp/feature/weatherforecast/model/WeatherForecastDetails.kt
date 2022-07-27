@@ -1,15 +1,25 @@
 package com.example.weatherapp.feature.weatherforecast.model
 
 import com.example.weatherapp.api.weatherforecast.model.ForecastAPIResponse
+import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.util.toTimeInText
 import com.example.weatherapp.util.toWeekDayName
 import kotlin.math.roundToInt
 
+/**
+ * A wrapper class for combining both weather forecast and current weather info.
+ * This is useful for the Weather forecast screen as it shows both current and future info.
+ */
+data class CompleteWeatherInfoWrapper(
+    val shortWeatherInfo: ShortWeatherInfo,
+    val weatherForecastDetails: WeatherForecastDetails,
+)
+
 data class WeatherForecastDetails(
     val cityName: String,
     val countyName: String,
-    val quickWeatherInfo: QuickWeatherInformation,
-    val weatherForecastDetails: Map<String, List<WeatherSnippet>>,
+    val sunriseInfo: SunriseInfo,
+    val details: Map<String, List<WeatherSnippet>>,
 )
 
 fun ForecastAPIResponse.toWeatherForecastDetails(): WeatherForecastDetails {
@@ -47,15 +57,11 @@ fun ForecastAPIResponse.toWeatherForecastDetails(): WeatherForecastDetails {
         return WeatherForecastDetails(
             cityName = city.name,
             countyName = city.country,
-            quickWeatherInfo = QuickWeatherInformation(
-                weatherDescription = "",
-                humidity = "",
-                windSpeed = "",
-                pressure = "",
+            sunriseInfo = SunriseInfo(
                 sunriseTime = city.sunrise,
                 sunsetTime = city.sunset
             ),
-            weatherForecastDetails = weatherForecastDetails
+            details = weatherForecastDetails
         )
     }
 }

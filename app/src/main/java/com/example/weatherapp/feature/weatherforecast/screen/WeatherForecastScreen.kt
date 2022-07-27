@@ -40,16 +40,16 @@ fun WeatherForecastScreen(
                     )
             ) {
                 Header(
-                    weatherForecastDetails = result.data
+                    shortWeatherInfo = result.data.shortWeatherInfo
                 )
                 Spacer(modifier = Modifier.height(30.dp))
                 QuickWeatherInfoBar(
-                    result.data.quickWeatherInfo
+                    result.data.shortWeatherInfo
                 )
                 Spacer(modifier = Modifier.height(60.dp))
                 DetailedForecastInfoWidget(
                     viewModel.weatherForecastState,
-                    result.data.weatherForecastDetails
+                    result.data.weatherForecastDetails.details
                 )
             }
         }

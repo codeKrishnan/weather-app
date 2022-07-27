@@ -10,17 +10,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.R
 import com.example.weatherapp.baseui.widget.BrightText
-import com.example.weatherapp.feature.weatherforecast.model.WeatherForecastDetails
+import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
+import kotlin.math.roundToInt
 
 @Composable
-fun Header(weatherForecastDetails: WeatherForecastDetails) {
-    with(weatherForecastDetails) {
+fun Header(shortWeatherInfo: ShortWeatherInfo) {
+    with(shortWeatherInfo) {
         BrightText(
             text = cityName,
             fontSize = 20.sp
         )
         BrightText(
-            text = "To Fill°",
+            text = "${currentTemperature.roundToInt()}°",
             fontSize = 64.sp
         )
         BrightText(
@@ -33,7 +34,7 @@ fun Header(weatherForecastDetails: WeatherForecastDetails) {
                     horizontal = 12.dp,
                     vertical = 8.dp
                 ),
-            text = weatherForecastDetails.quickWeatherInfo.weatherDescription,
+            text = shortWeatherInfo.weatherDescription,
         )
     }
 }

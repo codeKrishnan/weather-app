@@ -7,4 +7,5 @@ data class WeatherAPIMain(
     val feels_like: Double,
     val humidity: Int,
     val temp: Double,
+    val pressure: String,
 )

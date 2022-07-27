@@ -9,12 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherapp.R
+import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
+import com.example.weatherapp.feature.favouritelocations.model.WeatherType
 import com.example.weatherapp.feature.favouritelocations.screen.widget.IconText
-import com.example.weatherapp.feature.weatherforecast.model.QuickWeatherInformation
+import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 
 @Composable
-fun QuickWeatherInfoBar(quickWeatherInfo: QuickWeatherInformation) {
-    with(quickWeatherInfo) {
+fun QuickWeatherInfoBar(shortWeatherInfo: ShortWeatherInfo) {
+    with(shortWeatherInfo) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -33,13 +35,19 @@ fun QuickWeatherInfoBar(quickWeatherInfo: QuickWeatherInformation) {
 @Composable
 private fun QuickWeatherInfoBarPreview() {
     QuickWeatherInfoBar(
-        quickWeatherInfo = QuickWeatherInformation(
-            weatherDescription = "Cloudy",
-            humidity = "60 %",
-            windSpeed = "1 m/s",
-            pressure = "12 hPa",
-            sunriseTime = "7 AM",
-            sunsetTime = "6 PM"
-        )
+        shortWeatherInfo = ShortWeatherInfo(
+            coordinates = Coordinates(
+                latitude = "12",
+                longitude = "12"
+            ),
+            currentTemperature = 25.00,
+            countryCode = "IND",
+            cityName = "Delhi",
+            windSpeed = "2",
+            humidity = "23",
+            weatherType = WeatherType.Clear,
+            weatherDescription = "Clear",
+            pressure = "100",
+        ),
     )
 }

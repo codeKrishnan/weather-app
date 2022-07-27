@@ -39,7 +39,7 @@ import kotlin.math.roundToInt
 @Composable
 fun WeatherQuickPreviewWidget(
     shortWeatherItems: List<ShortWeatherInfo>,
-    onClick: (Coordinates) -> Unit
+    onClick: (Coordinates) -> Unit,
 ) {
     LazyVerticalGrid(
         cells = GridCells.Adaptive(minSize = 150.dp),
@@ -160,7 +160,9 @@ fun WeatherQuickPreviewPreview() {
             cityName = "Delhi",
             windSpeed = "2",
             humidity = "23",
-            weatherType = WeatherType.Clear
+            weatherType = WeatherType.Clear,
+            weatherDescription = "Clear",
+            pressure = "100"
         ),
         onClick = {}
     )
@@ -181,7 +183,9 @@ fun WeatherQuickPreviewWidgetPreview() {
                 cityName = "Delhi",
                 windSpeed = "2",
                 humidity = "23",
-                weatherType = WeatherType.Clear
+                weatherType = WeatherType.Clear,
+                weatherDescription = "Clear",
+                pressure = "100",
             ),
             ShortWeatherInfo(
                 coordinates = Coordinates(
@@ -193,7 +197,9 @@ fun WeatherQuickPreviewWidgetPreview() {
                 cityName = "Delhi",
                 windSpeed = "2",
                 humidity = "23",
-                weatherType = WeatherType.Clear
+                weatherType = WeatherType.Clear,
+                weatherDescription = "Clear",
+                pressure = "100"
             )
         ),
         onClick = {}
