@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -63,7 +62,6 @@ private fun WeatherQuickPreviewCard(
 ) {
     Surface(
         modifier = Modifier
-            .aspectRatio(1f)
             .clickable {
                 onClick(shortWeatherInfo.coordinates)
             }
@@ -72,6 +70,18 @@ private fun WeatherQuickPreviewCard(
         color = colorResource(id = R.color.grey_cards),
         shape = RoundedCornerShape(16.dp)
     ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            GradientIcon(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .size(50.dp),
+                weatherType = shortWeatherInfo.weatherType
+            )
+        }
         Column(
             modifier = Modifier
                 .padding(16.dp)
@@ -98,11 +108,6 @@ private fun WeatherQuickPreviewCard(
                     DimText(
                         text = shortWeatherInfo.countryCode,
                     )
-                }
-                Column(
-                    verticalArrangement = Arrangement.Top
-                ) {
-                    GradientIcon(weatherType = shortWeatherInfo.weatherType)
                 }
             }
             Row(

@@ -39,7 +39,7 @@ fun HomeScreen(
                     start = 18.dp,
                     end = 18.dp,
                     top = 12.dp,
-                    bottom = 24.dp,
+                    bottom = 48.dp,
                 ),
         ) {
             SearchBox(
