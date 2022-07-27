@@ -3,6 +3,7 @@ package com.example.weatherapp.feature.weatherforecast.model
 import com.example.weatherapp.api.weatherforecast.model.WeatherForecastAPIResponse
 import com.example.weatherapp.util.toTimeInText
 import com.example.weatherapp.util.toWeekDayName
+import kotlin.math.roundToInt
 
 data class WeatherForecastDetails(
     val cityName: String,
@@ -24,16 +25,20 @@ fun WeatherForecastAPIResponse.toWeatherForecastDetails(): WeatherForecastDetail
                 weatherForecastDetails[weekDayName]?.add(
                     WeatherSnippet(
                         time = it.dt_txt.toTimeInText(),
-                        temperature = it.main.temp,
-                        weatherType = it.weather.first().main
+                        temperature = it.main.temp.roundToInt(),
+                        weatherType = it.weather.first().main,
+                        minTemperature = it.main.temp_min?.roundToInt() ?: 0,
+                        maxTemperature = it.main.temp_max?.roundToInt() ?: 0,
                     )
                 )
             } else {
                 weatherForecastDetails[weekDayName] = mutableListOf(
                     WeatherSnippet(
                         time = it.dt_txt.toTimeInText(),
-                        temperature = it.main.temp,
-                        weatherType = it.weather.first().main
+                        temperature = it.main.temp.roundToInt(),
+                        weatherType = it.weather.first().main,
+                        minTemperature = it.main.temp_min?.roundToInt() ?: 0,
+                        maxTemperature = it.main.temp_max?.roundToInt() ?: 0,
                     )
                 )
             }

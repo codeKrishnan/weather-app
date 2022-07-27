@@ -9,6 +9,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherapp.R
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
+import com.example.weatherapp.feature.favouritelocations.model.WeatherType
 import com.example.weatherapp.feature.weatherforecast.model.WeatherSnippet
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastState
 
@@ -45,7 +46,26 @@ private fun DetailedForecastInfoWidgetPreview() {
     WeatherAppTheme {
         DetailedForecastInfoWidget(
             forecastState = WeatherForecastState(),
-            weatherForecastDetails = emptyMap()
+            weatherForecastDetails = mapOf(
+                "Sunday" to listOf(
+                    WeatherSnippet(
+                        time = "9 AM",
+                        temperature = 21,
+                        weatherType = WeatherType.Clear,
+                        minTemperature = 23,
+                        maxTemperature = 34
+                    )
+                ),
+                "Monday" to listOf(
+                    WeatherSnippet(
+                        time = "9 AM",
+                        temperature = 24,
+                        weatherType = WeatherType.Clear,
+                        minTemperature = 14,
+                        maxTemperature = 23
+                    )
+                )
+            )
         )
     }
 }

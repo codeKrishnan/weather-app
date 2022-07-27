@@ -25,5 +25,12 @@ fun String.toWeekDayName(): String {
         "EEEE",
         Locale.getDefault()
     )
-    return weekDayFormat.format(this.toDate()!!)
+
+    val today = Calendar.getInstance().time
+
+    return if (weekDayFormat.format(today) == weekDayFormat.format(this.toDate()!!)) {
+        return "Today"
+    } else {
+        weekDayFormat.format(this.toDate()!!)
+    }
 }

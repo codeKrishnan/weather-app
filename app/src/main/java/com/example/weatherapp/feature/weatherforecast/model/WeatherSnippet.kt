@@ -4,6 +4,8 @@ import com.example.weatherapp.feature.favouritelocations.model.WeatherType
 
 data class WeatherSnippet(
     val time: String,
-    val temperature: String,
+    val temperature: Int,
+    val minTemperature: Int,
+    val maxTemperature: Int,
     val weatherType: WeatherType,
 )
