@@ -10,18 +10,13 @@ import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
-import com.example.weatherapp.feature.weatherforecast.model.toWeatherForecastDetails
-import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastState
-import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastUIState
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
-import com.example.weatherapp.usecase.weatherforecast.base.GetWeatherForecastForLocationUseCase
 import kotlinx.coroutines.launch
 
 class BaseNavigationViewModel(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
     private val getPlacesForSearchQueryUseCase: GetPlacesForSearchQueryUseCase,
-    private val getWeatherForecastForLocationUseCase: GetWeatherForecastForLocationUseCase,
 ) : ViewModel() {
 
     private val _favouriteLocationUIState: MutableLiveData<FavouriteLocationsUIState> =
@@ -29,13 +24,7 @@ class BaseNavigationViewModel(
     val uiState: LiveData<FavouriteLocationsUIState>
         get() = _favouriteLocationUIState
 
-    private val _weatherForecastUIState: MutableLiveData<WeatherForecastUIState> = MutableLiveData()
-    val weatherForecastUIState: LiveData<WeatherForecastUIState>
-        get() = _weatherForecastUIState
-
-
     val locationSearchState = LocationSearchState()
-    val weatherForecastState = WeatherForecastState()
 
     fun getCurrentWeather(
         coordinates: List<Coordinates> = FavouriteLocations.defaultLocations,
@@ -62,10 +51,7 @@ class BaseNavigationViewModel(
                 }
             }
         }
-        getWeatherForecastOfLocation(
-            coordinates.first().latitude,
-            coordinates.first().longitude
-        )
+
     }
 
     fun getRecommendationsForLocationSearch(query: String) {
@@ -75,29 +61,6 @@ class BaseNavigationViewModel(
             )
             if (result is Result.Success) {
                 locationSearchState.locationDetails.value = result.data
-            }
-        }
-    }
-
-    fun getWeatherForecastOfLocation(
-        latitude: String,
-        longitude: String,
-    ) {
-        _weatherForecastUIState.value = WeatherForecastUIState.Loading
-        viewModelScope.launch {
-            val result = getWeatherForecastForLocationUseCase(
-                latitude = latitude,
-                longitude = longitude
-            )
-
-            when (result) {
-                is Result.Success -> {
-                    _weatherForecastUIState.value =
-                        WeatherForecastUIState.Success(result.data.toWeatherForecastDetails())
-                }
-                is Result.Error -> {
-                    _weatherForecastUIState.value = WeatherForecastUIState.Error
-                }
             }
         }
     }

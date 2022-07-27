@@ -15,14 +15,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.weatherapp.R
-import com.example.weatherapp.feature.base.BaseNavigationViewModel
+import com.example.weatherapp.feature.weatherforecast.WeatherForecastViewModel
 import com.example.weatherapp.feature.weatherforecast.screen.widget.DetailedForecastInfoWidget
 import com.example.weatherapp.feature.weatherforecast.screen.widget.QuickWeatherInfoBar
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastUIState
 
 @Composable
 fun WeatherForecastScreen(
-    viewModel: BaseNavigationViewModel,
+    viewModel: WeatherForecastViewModel,
 ) {
     val uiState = viewModel.weatherForecastUIState.observeAsState()
 
