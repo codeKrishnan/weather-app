@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.favouritelocations.screen.widget.search
+package com.example.weatherapp.feature.favouritelocations.screen.widget
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.feature.favouritelocations.model.LocationDetail
+import com.example.weatherapp.feature.favouritelocations.screen.widget.search.SearchBar
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchDesignScope
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
 
