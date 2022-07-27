@@ -2,7 +2,7 @@ package com.example.weatherapp.api.currentweather.repository
 
 
 import com.example.weatherapp.api.common.Result
-import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
+import com.example.weatherapp.api.currentweather.model.WeatherAPIResponse
 import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.api.currentweather.service.CurrentWeatherService
 import com.squareup.moshi.JsonDataException
@@ -17,7 +17,7 @@ class CurrentWeatherAPIRepositoryImpl @Inject constructor(
     override suspend fun getCurrentWeather(
         latitude: String,
         longitude: String,
-    ): Result<CurrentWeatherResponse> =
+    ): Result<WeatherAPIResponse> =
         withContext(Dispatchers.IO) {
             try {
                 val response = currentWeatherService.getCurrentWeather(

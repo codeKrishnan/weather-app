@@ -1,7 +1,7 @@
 package com.example.weatherapp.usecase.weatherforecast
 
 import com.example.weatherapp.api.common.Result
-import com.example.weatherapp.api.weatherforecast.model.WeatherForecastAPIResponse
+import com.example.weatherapp.api.weatherforecast.model.ForecastAPIResponse
 import com.example.weatherapp.api.weatherforecast.repository.base.WeatherForecastRepository
 import com.example.weatherapp.usecase.weatherforecast.base.GetWeatherForecastForLocationUseCase
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +15,7 @@ class GetWeatherForecastForLocationUseCaseImpl @Inject constructor(
     override suspend fun invoke(
         latitude: String,
         longitude: String,
-    ): Result<WeatherForecastAPIResponse> = withContext(Dispatchers.Default) {
+    ): Result<ForecastAPIResponse> = withContext(Dispatchers.Default) {
         return@withContext weatherForecastRepository.getWeatherForecastForLocation(
             latitude = latitude,
             longitude = longitude,

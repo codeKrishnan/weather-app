@@ -1,7 +1,7 @@
 package com.example.weatherapp.api.currentweather.repository.base
 
 import com.example.weatherapp.api.common.Result
-import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
+import com.example.weatherapp.api.currentweather.model.WeatherAPIResponse
 
 interface CurrentWeatherRepository {
 
@@ -14,5 +14,5 @@ interface CurrentWeatherRepository {
     suspend fun getCurrentWeather(
         latitude: String,
         longitude: String,
-    ): Result<CurrentWeatherResponse>
+    ): Result<WeatherAPIResponse>
 }

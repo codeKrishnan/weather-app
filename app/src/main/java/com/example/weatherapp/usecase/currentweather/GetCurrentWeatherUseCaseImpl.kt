@@ -1,7 +1,7 @@
 package com.example.weatherapp.usecase.currentweather
 
 import com.example.weatherapp.api.common.Result
-import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
+import com.example.weatherapp.api.currentweather.model.WeatherAPIResponse
 import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
@@ -15,9 +15,9 @@ class GetCurrentWeatherUseCaseImpl @Inject constructor(
 
     override suspend fun invoke(
         coordinates: List<Coordinates>,
-    ): Result<List<CurrentWeatherResponse>> =
+    ): Result<List<WeatherAPIResponse>> =
         withContext(Dispatchers.Default) {
-            val currentWeatherResponses = mutableListOf<CurrentWeatherResponse>()
+            val currentWeatherResponses = mutableListOf<WeatherAPIResponse>()
 
             coordinates.forEach { coordinates ->
                 val apiResult = currentWeatherRepository.getCurrentWeather(
@@ -32,7 +32,7 @@ class GetCurrentWeatherUseCaseImpl @Inject constructor(
             return@withContext if (currentWeatherResponses.isNotEmpty()) {
                 Result.Success(currentWeatherResponses)
             } else {
-                Result.Error(emptyList<CurrentWeatherResponse>())
+                Result.Error(emptyList<WeatherAPIResponse>())
             }
         }
 }

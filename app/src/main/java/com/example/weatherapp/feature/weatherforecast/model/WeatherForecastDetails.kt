@@ -1,6 +1,6 @@
 package com.example.weatherapp.feature.weatherforecast.model
 
-import com.example.weatherapp.api.weatherforecast.model.WeatherForecastAPIResponse
+import com.example.weatherapp.api.weatherforecast.model.ForecastAPIResponse
 import com.example.weatherapp.util.toTimeInText
 import com.example.weatherapp.util.toWeekDayName
 import kotlin.math.roundToInt
@@ -12,7 +12,7 @@ data class WeatherForecastDetails(
     val weatherForecastDetails: Map<String, List<WeatherSnippet>>,
 )
 
-fun WeatherForecastAPIResponse.toWeatherForecastDetails(): WeatherForecastDetails {
+fun ForecastAPIResponse.toWeatherForecastDetails(): WeatherForecastDetails {
 
     with(this) {
 

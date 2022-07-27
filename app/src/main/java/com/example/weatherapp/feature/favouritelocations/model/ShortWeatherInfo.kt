@@ -1,7 +1,7 @@
 package com.example.weatherapp.feature.favouritelocations.model
 
 import com.example.weatherapp.R
-import com.example.weatherapp.api.currentweather.model.CurrentWeatherResponse
+import com.example.weatherapp.api.currentweather.model.WeatherAPIResponse
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 
 /**
@@ -17,7 +17,7 @@ data class ShortWeatherInfo(
     val weatherType: WeatherType,
 )
 
-fun CurrentWeatherResponse.toShortWeatherInfo(): ShortWeatherInfo {
+fun WeatherAPIResponse.toShortWeatherInfo(): ShortWeatherInfo {
 
     with(this) {
         return ShortWeatherInfo(

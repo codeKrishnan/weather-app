@@ -1,6 +1,6 @@
 package com.example.weatherapp.api.weatherforecast.service
 
-import com.example.weatherapp.api.weatherforecast.model.WeatherForecastAPIResponse
+import com.example.weatherapp.api.weatherforecast.model.ForecastAPIResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,5 +13,5 @@ interface WeatherForecastService {
         @Query("lat") latitude: String,
         @Query("lon") longitude: String,
         @Query("units") units: String = "metric",
-    ): Response<WeatherForecastAPIResponse>
+    ): Response<ForecastAPIResponse>
 }
