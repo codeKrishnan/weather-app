@@ -8,7 +8,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.example.weatherapp.WeatherApplication
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
-import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.weatherforecast.screen.WeatherForecastScreen
 import javax.inject.Inject
@@ -43,9 +42,8 @@ class WeatherForecastActivity : ComponentActivity() {
 
         setContent {
             WeatherAppTheme {
-                BaseNavigationScreen {
-                    WeatherForecastScreen(viewModel = viewModel)
-                }
+                WeatherForecastScreen(viewModel = viewModel)
+
             }
         }
         viewModel.getWeatherForecastOfLocation(

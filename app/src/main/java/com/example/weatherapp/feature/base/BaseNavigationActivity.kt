@@ -4,11 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.example.weatherapp.WeatherApplication
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
 import com.example.weatherapp.feature.favouritelocations.screen.FavouriteLocationsScreen
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
+import com.example.weatherapp.feature.home.screen.HomeScreen
 import com.example.weatherapp.feature.weatherforecast.WeatherForecastActivity
 import javax.inject.Inject
 
@@ -25,14 +30,28 @@ class BaseNavigationActivity : ComponentActivity() {
         setUpDagger()
         setContent {
             WeatherAppTheme {
-                BaseNavigationScreen {
-                    FavouriteLocationsScreen(
-                        viewModel = viewModel,
-                        onWeatherCardClicked = {
-                            navigateToWeatherForecastScreen(it)
+                BaseNavigationScreen(
+                    FavouriteScreen = {
+                        FavouriteLocationsScreen(
+                            viewModel = viewModel,
+                            onWeatherCardClicked = {
+                                navigateToWeatherForecastScreen(it)
+                            }
+                        )
+                    },
+                    HomeScreen = {
+                        HomeScreen()
+                    },
+                    AboutScreen = {
+                        androidx.compose.material.Surface(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color.Red)
+                        ) {
+
                         }
-                    )
-                }
+                    }
+                )
             }
         }
         viewModel.getCurrentWeather()
