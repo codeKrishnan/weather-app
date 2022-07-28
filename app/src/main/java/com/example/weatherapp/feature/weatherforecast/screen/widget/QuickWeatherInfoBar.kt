@@ -13,6 +13,7 @@ import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
 import com.example.weatherapp.feature.favouritelocations.screen.widget.IconText
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
+import com.example.weatherapp.feature.weatherforecast.screen.defaultPadding
 
 @Composable
 fun QuickWeatherInfoBar(shortWeatherInfo: ShortWeatherInfo) {
@@ -20,7 +21,8 @@ fun QuickWeatherInfoBar(shortWeatherInfo: ShortWeatherInfo) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(colorResource(id = R.color.grey_background)),
+                .background(colorResource(id = R.color.grey_background))
+                .defaultPadding(),
             horizontalArrangement = Arrangement.SpaceBetween
 
         ) {

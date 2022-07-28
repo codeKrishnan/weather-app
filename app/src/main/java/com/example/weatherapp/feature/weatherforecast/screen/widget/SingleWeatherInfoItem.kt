@@ -3,7 +3,8 @@ package com.example.weatherapp.feature.weatherforecast.screen.widget
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -31,19 +32,17 @@ fun SingleWeatherInfoItem(weatherSnippet: WeatherSnippet) {
                 end = 32.dp,
                 top = 12.dp,
                 bottom = 12.dp
-            )
-            .heightIn(
-                min = 30.dp,
-                max = 100.dp
             ),
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BrightText(text = weatherSnippet.time)
+        Spacer(Modifier.height(6.dp))
         GradientIcon(
-            modifier = Modifier.size(30.dp),
+            modifier = Modifier.size(40.dp),
             weatherType = weatherSnippet.weatherType
         )
+        Spacer(Modifier.height(6.dp))
         BrightText(
             text = "${weatherSnippet.temperature}°",
             fontSize = 24.sp

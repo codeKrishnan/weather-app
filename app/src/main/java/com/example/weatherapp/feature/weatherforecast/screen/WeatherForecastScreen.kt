@@ -22,6 +22,9 @@ import com.example.weatherapp.feature.weatherforecast.screen.widget.Header
 import com.example.weatherapp.feature.weatherforecast.screen.widget.QuickWeatherInfoBar
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastUIState
 
+
+fun Modifier.defaultPadding(): Modifier = padding(horizontal = 24.dp)
+
 @Composable
 fun WeatherForecastScreen(
     viewModel: WeatherForecastViewModel,
@@ -36,7 +39,6 @@ fun WeatherForecastScreen(
                     .background(colorResource(id = R.color.grey_background))
                     .padding(
                         vertical = 32.dp,
-                        horizontal = 32.dp,
                     )
             ) {
                 Header(

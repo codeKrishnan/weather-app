@@ -28,13 +28,15 @@ fun DetailedWeatherInfoRow(
             .fillMaxWidth()
             .background(colorResource(id = R.color.grey_background))
             .padding(
-                vertical = 10.dp
+                top = 10.dp,
+                bottom = 10.dp,
+                start = 24.dp
             )
     ) {
 
         if (rowDetails.key == selectedDay) {
             DimText(text = rowDetails.key)
-            LazyRow() {
+            LazyRow {
                 items(rowDetails.value.size) {
                     SingleWeatherInfoItem(
                         rowDetails.value[it]
