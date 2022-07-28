@@ -60,3 +60,15 @@ fun WeatherType.getIcon(): Int {
         WeatherType.Unknown -> R.drawable.sunny
     }
 }
+
+fun WeatherType.getImage(): Int {
+    return when (this) {
+        WeatherType.Thunderstorm -> R.drawable.thunderstorm_colour
+        WeatherType.Rain -> R.drawable.rainy_colour
+        WeatherType.Drizzle -> R.drawable.drizzle_colour
+        WeatherType.Snow -> R.drawable.snow_colour
+        WeatherType.Clear -> R.drawable.sunny_colour
+        WeatherType.Clouds -> R.drawable.clouds
+        WeatherType.Unknown -> R.drawable.sunny_colour
+    }
+}
