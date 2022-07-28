@@ -28,7 +28,7 @@ sealed class Screen(
     @DrawableRes val res: Int,
 ) {
     object Home : Screen(route = "Home", res = R.drawable.home)
-    object Favourites : Screen(route = "Favourites", res = R.drawable.list)
+    object Favourites : Screen(route = "Favourites", res = R.drawable.heart)
     object About : Screen(route = "About", res = R.drawable.info)
 
     companion object {
