@@ -23,7 +23,7 @@ import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 
 @Composable
-fun HomeScreen(
+fun FavouriteLocationsScreen(
     viewModel: BaseNavigationViewModel,
     onWeatherCardClicked: (Coordinates) -> Unit,
 ) {
@@ -82,8 +82,8 @@ fun HomeScreen(
 
 @Preview(showBackground = true)
 @Composable
-private fun HomeScreenPreview() {
-    HomeScreen(
+private fun FavouriteLocationsPreview() {
+    FavouriteLocationsScreen(
         viewModel = viewModel(),
         onWeatherCardClicked = {}
     )

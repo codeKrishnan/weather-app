@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import com.example.weatherapp.WeatherApplication
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
-import com.example.weatherapp.feature.favouritelocations.screen.HomeScreen
+import com.example.weatherapp.feature.favouritelocations.screen.FavouriteLocationsScreen
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.weatherforecast.WeatherForecastActivity
 import javax.inject.Inject
@@ -26,7 +26,7 @@ class BaseNavigationActivity : ComponentActivity() {
         setContent {
             WeatherAppTheme {
                 BaseNavigationScreen {
-                    HomeScreen(
+                    FavouriteLocationsScreen(
                         viewModel = viewModel,
                         onWeatherCardClicked = {
                             navigateToWeatherForecastScreen(it)
