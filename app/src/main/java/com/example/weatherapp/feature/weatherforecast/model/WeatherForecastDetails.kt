@@ -39,6 +39,7 @@ fun ForecastAPIResponse.toWeatherForecastDetails(): WeatherForecastDetails {
                         weatherType = it.weather.first().main,
                         minTemperature = it.main.temp_min?.roundToInt() ?: 0,
                         maxTemperature = it.main.temp_max?.roundToInt() ?: 0,
+                        icon = ""
                     )
                 )
             } else {

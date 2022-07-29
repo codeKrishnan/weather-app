@@ -85,3 +85,15 @@ fun WeatherType.getImage(): Int {
         WeatherType.Unknown -> R.drawable.sunny_colour
     }
 }
+
+fun WeatherType.getBrightIcons(): Int {
+    return when (this) {
+        WeatherType.Thunderstorm -> R.drawable.stormy_bright
+        WeatherType.Rain -> R.drawable.rainy_bright
+        WeatherType.Drizzle -> R.drawable.drizzle_bright
+        WeatherType.Snow -> R.drawable.snowy_bright
+        WeatherType.Clear -> R.drawable.clear_bright
+        WeatherType.Clouds -> R.drawable.cloudy_bright
+        WeatherType.Unknown -> R.drawable.cloudy_bright
+    }
+}

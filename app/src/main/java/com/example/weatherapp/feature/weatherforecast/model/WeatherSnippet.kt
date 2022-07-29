@@ -8,4 +8,5 @@ data class WeatherSnippet(
     val minTemperature: Int,
     val maxTemperature: Int,
     val weatherType: WeatherType,
+    val icon: String = "",
 )
