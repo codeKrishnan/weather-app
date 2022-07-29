@@ -20,6 +20,7 @@ data class ShortWeatherInfo(
     val weatherType: WeatherType,
     val weatherDescription: String,
     val pressure: String,
+    val isSunrise: Boolean = true,
     val sunsetOrRaiseTime: String = "",
 )
 

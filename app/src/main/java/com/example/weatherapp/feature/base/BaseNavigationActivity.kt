@@ -40,7 +40,12 @@ class BaseNavigationActivity : ComponentActivity() {
                         )
                     },
                     HomeScreen = {
-                        HomeScreen()
+                        HomeScreen(
+                            viewModel = viewModel,
+                            onShowWeatherForecastClicked = {
+                                navigateToWeatherForecastScreen(it)
+                            }
+                        )
                     },
                     AboutScreen = {
                         androidx.compose.material.Surface(
@@ -54,7 +59,7 @@ class BaseNavigationActivity : ComponentActivity() {
                 )
             }
         }
-        viewModel.getCurrentWeather()
+        viewModel.getWeatherInformationOfFavouriteLocations()
     }
 
     private fun setUpDagger() {

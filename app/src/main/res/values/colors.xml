@@ -15,4 +15,5 @@
     <color name="dim_text">#5F89A9</color>
     <color name="violet_pill_background">#353361</color>
     <color name="blue_icon_tint">#6693AB</color>
+    <color name="blue_text">#107fc4</color>
 </resources>

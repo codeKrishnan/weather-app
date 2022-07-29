@@ -42,7 +42,7 @@ fun String.toTimeInText(): String {
 
 fun String.toWeekDayName(): String {
     val weekDayFormat = SimpleDateFormat(
-        "MM EEEE",
+        "EEEE",
         Locale.getDefault()
     )
 

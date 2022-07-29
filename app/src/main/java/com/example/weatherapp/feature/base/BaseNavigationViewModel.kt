@@ -10,6 +10,7 @@ import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
+import com.example.weatherapp.feature.home.util.HomeUIState
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import kotlinx.coroutines.launch
@@ -21,12 +22,16 @@ class BaseNavigationViewModel(
 
     private val _favouriteLocationUIState: MutableLiveData<FavouriteLocationsUIState> =
         MutableLiveData()
-    val uiState: LiveData<FavouriteLocationsUIState>
+    val favouriteLocationsUIState: LiveData<FavouriteLocationsUIState>
         get() = _favouriteLocationUIState
+
+    private val _homeUIState: MutableLiveData<HomeUIState> = MutableLiveData()
+    val homeUIState: LiveData<HomeUIState>
+        get() = _homeUIState
 
     val locationSearchState = LocationSearchState()
 
-    fun getCurrentWeather(
+    fun getWeatherInformationOfFavouriteLocations(
         coordinates: List<Coordinates> = FavouriteLocations.defaultLocations,
     ) {
         _favouriteLocationUIState.postValue(FavouriteLocationsUIState.Loading)
@@ -51,7 +56,31 @@ class BaseNavigationViewModel(
                 }
             }
         }
+    }
 
+    fun getWeatherDetailsForHome(
+        coordinates: Coordinates,
+    ) {
+        _homeUIState.postValue(HomeUIState.Loading)
+        clearSearchRecommendations()
+        viewModelScope.launch {
+            val result = getCurrentWeatherUseCase(
+                listOf(coordinates)
+            )
+
+            when (result) {
+                is Result.Error -> {
+                    _homeUIState.postValue(HomeUIState.Error)
+                }
+                is Result.Success -> {
+                    _homeUIState.postValue(
+                        HomeUIState.Success(
+                            result.data.first().toShortWeatherInfo()
+                        )
+                    )
+                }
+            }
+        }
     }
 
     fun getRecommendationsForLocationSearch(query: String) {

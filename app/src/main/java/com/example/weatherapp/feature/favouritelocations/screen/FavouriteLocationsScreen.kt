@@ -27,7 +27,7 @@ fun FavouriteLocationsScreen(
     viewModel: BaseNavigationViewModel,
     onWeatherCardClicked: (Coordinates) -> Unit,
 ) {
-    val uiState = viewModel.uiState.observeAsState()
+    val uiState = viewModel.favouriteLocationsUIState.observeAsState()
 
     Surface(
         color = colorResource(id = R.color.grey_background)
@@ -44,7 +44,7 @@ fun FavouriteLocationsScreen(
             SearchBox(
                 locationSearchState = viewModel.locationSearchState,
                 onLocationClick = { locationDetail ->
-                    viewModel.getCurrentWeather(
+                    viewModel.getWeatherInformationOfFavouriteLocations(
                         listOf(
                             Coordinates(
                                 latitude = locationDetail.latitude,
@@ -62,7 +62,7 @@ fun FavouriteLocationsScreen(
             when (val state = uiState.value) {
                 FavouriteLocationsUIState.Error -> {
                     ErrorIndicator {
-                        viewModel.getCurrentWeather()
+                        viewModel.getWeatherInformationOfFavouriteLocations()
                     }
                 }
                 is FavouriteLocationsUIState.Success -> {
