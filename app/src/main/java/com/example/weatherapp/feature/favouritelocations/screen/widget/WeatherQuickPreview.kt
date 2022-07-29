@@ -54,7 +54,6 @@ fun WeatherQuickPreviewWidget(
     }
 }
 
-
 @Composable
 private fun WeatherQuickPreviewCard(
     shortWeatherInfo: ShortWeatherInfo,
@@ -62,10 +61,10 @@ private fun WeatherQuickPreviewCard(
 ) {
     Surface(
         modifier = Modifier
+            .padding(8.dp)
             .clickable {
                 onClick(shortWeatherInfo.coordinates)
             }
-            .padding(8.dp)
             .wrapContentSize(),
         color = colorResource(id = R.color.grey_cards),
         shape = RoundedCornerShape(16.dp)

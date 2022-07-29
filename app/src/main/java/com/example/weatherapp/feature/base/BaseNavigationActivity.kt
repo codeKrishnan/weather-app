@@ -1,15 +1,14 @@
 package com.example.weatherapp.feature.base
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import com.example.weatherapp.WeatherApplication
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
+import com.example.weatherapp.feature.about.screen.AboutScreen
 import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
 import com.example.weatherapp.feature.favouritelocations.screen.FavouriteLocationsScreen
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
@@ -34,27 +33,23 @@ class BaseNavigationActivity : ComponentActivity() {
                     FavouriteScreen = {
                         FavouriteLocationsScreen(
                             viewModel = viewModel,
-                            onWeatherCardClicked = {
-                                navigateToWeatherForecastScreen(it)
+                            onWeatherCardClicked = { coordinates ->
+                                navigateToWeatherForecastScreen(coordinates)
                             }
                         )
                     },
                     HomeScreen = {
                         HomeScreen(
                             viewModel = viewModel,
-                            onShowWeatherForecastClicked = {
-                                navigateToWeatherForecastScreen(it)
+                            onShowWeatherForecastClicked = { coordinates ->
+                                navigateToWeatherForecastScreen(coordinates)
                             }
                         )
                     },
                     AboutScreen = {
-                        androidx.compose.material.Surface(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(Color.Red)
-                        ) {
-
-                        }
+                        AboutScreen(onGoClicked = { url ->
+                            navigateToExternalBrowser(url)
+                        })
                     }
                 )
             }
@@ -75,5 +70,11 @@ class BaseNavigationActivity : ComponentActivity() {
             coordinates = coordinates
         )
         this.startActivity(intent)
+    }
+
+    private fun navigateToExternalBrowser(url: String) {
+        val openURL = Intent(Intent.ACTION_VIEW)
+        openURL.data = Uri.parse(url)
+        startActivity(openURL)
     }
 }
