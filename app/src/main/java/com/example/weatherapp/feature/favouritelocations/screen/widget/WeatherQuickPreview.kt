@@ -131,6 +131,7 @@ private fun WeatherQuickPreviewCard(
 fun IconText(
     @DrawableRes iconResource: Int,
     text: String,
+    isBrightText: Boolean = true,
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -144,10 +145,11 @@ fun IconText(
             contentDescription = "Weather icon",
             tint = colorResource(id = R.color.blue_icon_tint)
         )
-        BrightText(
-            text = text,
-        )
-
+        if (isBrightText) {
+            BrightText(text = text)
+        } else {
+            DimText(text = text)
+        }
     }
 }
 

@@ -3,6 +3,8 @@ package com.example.weatherapp.feature.favouritelocations.model
 import com.example.weatherapp.R
 import com.example.weatherapp.api.currentweather.model.WeatherAPIResponse
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
+import com.example.weatherapp.util.isBeforeSunrise
+import com.example.weatherapp.util.toHoursAndMinutes
 
 /**
  * Contains a subset of important weather information.
@@ -10,6 +12,7 @@ import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 data class ShortWeatherInfo(
     val coordinates: Coordinates,
     val currentTemperature: Double,
+    val feelsLikeTemperature: String = "",
     val countryCode: String,
     val cityName: String,
     val windSpeed: String,
@@ -17,24 +20,33 @@ data class ShortWeatherInfo(
     val weatherType: WeatherType,
     val weatherDescription: String,
     val pressure: String,
+    val sunsetOrRaiseTime: String = "",
 )
 
 fun WeatherAPIResponse.toShortWeatherInfo(): ShortWeatherInfo {
 
     with(this) {
+
+        val sunsetOrRaiseTime = if (sys.sunrise.isBeforeSunrise()) {
+            sys.sunrise.toHoursAndMinutes()
+        } else {
+            sys.sunset.toHoursAndMinutes()
+        }
         return ShortWeatherInfo(
             coordinates = Coordinates(
                 latitude = coord.lat,
                 longitude = coord.lon
             ),
             currentTemperature = main.temp,
-            countryCode = sys.country,
+            countryCode = sys.country ?: "",
             cityName = name,
             windSpeed = "${wind.speed}",
             humidity = "${main.humidity}",
             weatherType = weather.first().main,
             weatherDescription = weather.first().description,
-            pressure = main.pressure
+            pressure = main.pressure,
+            feelsLikeTemperature = "${main.feels_like.toInt()}",
+            sunsetOrRaiseTime = sunsetOrRaiseTime,
         )
     }
 }

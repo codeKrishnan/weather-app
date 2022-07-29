@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.weatherforecast.screen.widget
+package com.example.weatherapp.baseui.widget
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,14 +16,17 @@ import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.weatherforecast.screen.defaultPadding
 
 @Composable
-fun QuickWeatherInfoBar(shortWeatherInfo: ShortWeatherInfo) {
+fun QuickWeatherInfoBar(
+    shortWeatherInfo: ShortWeatherInfo,
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.SpaceBetween,
+) {
     with(shortWeatherInfo) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(colorResource(id = R.color.grey_background))
                 .defaultPadding(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = horizontalArrangement
 
         ) {
             IconText(iconResource = R.drawable.droplet, text = "$humidity %")

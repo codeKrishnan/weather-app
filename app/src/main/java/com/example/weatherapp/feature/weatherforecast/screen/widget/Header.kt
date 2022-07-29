@@ -1,22 +1,19 @@
 package com.example.weatherapp.feature.weatherforecast.screen.widget
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.widget.BlueCallOut
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
@@ -49,18 +46,7 @@ fun Header(shortWeatherInfo: ShortWeatherInfo) {
                         text = "${currentTemperature.roundToInt()}°c",
                         fontSize = 64.sp
                     )
-                    BrightText(
-                        modifier = Modifier
-                            .background(
-                                color = colorResource(id = R.color.violet_pill_background),
-                                shape = RoundedCornerShape(18.dp)
-                            )
-                            .padding(
-                                horizontal = 12.dp,
-                                vertical = 8.dp
-                            ),
-                        text = shortWeatherInfo.weatherDescription,
-                    )
+                    BlueCallOut(label = shortWeatherInfo.weatherDescription)
                 }
                 Image(
                     modifier = Modifier
@@ -89,7 +75,8 @@ private fun HeaderPreview() {
             humidity = "23",
             weatherType = WeatherType.Clear,
             weatherDescription = "Clear",
-            pressure = "100"
+            pressure = "100",
+            sunsetOrRaiseTime = "6.23 AM"
         )
     )
 }

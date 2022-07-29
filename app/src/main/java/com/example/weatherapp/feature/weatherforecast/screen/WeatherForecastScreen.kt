@@ -19,7 +19,7 @@ import com.example.weatherapp.feature.favouritelocations.screen.widget.LoadingIn
 import com.example.weatherapp.feature.weatherforecast.WeatherForecastViewModel
 import com.example.weatherapp.feature.weatherforecast.screen.widget.DetailedForecastInfoWidget
 import com.example.weatherapp.feature.weatherforecast.screen.widget.Header
-import com.example.weatherapp.feature.weatherforecast.screen.widget.QuickWeatherInfoBar
+import com.example.weatherapp.baseui.widget.QuickWeatherInfoBar
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastUIState
 
 

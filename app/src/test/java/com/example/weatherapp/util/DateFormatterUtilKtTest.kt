@@ -49,4 +49,19 @@ internal class DateFormatterUtilKtTest {
             formattedTime
         )
     }
+
+    @Test
+    fun `WHEN unix time is given, WHEN unixToDate is called, THEN return the time in hours`() {
+        //GIVEN
+        val time: Long = 1560350645
+
+        //WHEN
+        val formattedTime = time.toHoursAndMinutes()
+
+        //THEN
+        Assert.assertEquals(
+            "04:34 AM",
+            formattedTime
+        )
+    }
 }
