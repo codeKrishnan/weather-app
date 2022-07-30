@@ -1,7 +1,5 @@
 package com.example.weatherapp.util
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.util.*
@@ -62,15 +60,17 @@ fun getCurrentDate(): String {
     return currentDayFormat.format(currentDate)
 }
 
-fun Long.toDate(): Date = Date().apply { time = this@toDate * 100 }
+fun Long.toDate(): Date = Date().apply { time = this@toDate * 1000 }
 
 fun Long?.toHoursAndMinutes(): String {
     if (this == null) return ""
     return timeFormatHourAndMinutesWithMeridiem.format(this.toDate()).uppercase()
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun Long.isBeforeSunrise(): Boolean {
+/**
+ * Checks weather [this] time is after the current time.
+ */
+fun Long.isAfter(): Boolean {
     val timeToCompare = LocalTime.parse(
         timeFormatHourAndMinutes.format(this.toDate())
     )

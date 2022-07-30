@@ -3,7 +3,7 @@ package com.example.weatherapp.feature.favouritelocations.model
 import com.example.weatherapp.R
 import com.example.weatherapp.api.currentweather.model.WeatherAPIResponse
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
-import com.example.weatherapp.util.isBeforeSunrise
+import com.example.weatherapp.util.isAfter
 import com.example.weatherapp.util.toHoursAndMinutes
 
 /**
@@ -28,7 +28,9 @@ fun WeatherAPIResponse.toShortWeatherInfo(): ShortWeatherInfo {
 
     with(this) {
 
-        val sunsetOrRaiseTime = if (sys.sunrise.isBeforeSunrise()) {
+        var isSunrise = false
+        val sunsetOrRaiseTime = if (sys.sunrise.isAfter()) {
+            isSunrise = true
             sys.sunrise.toHoursAndMinutes()
         } else {
             sys.sunset.toHoursAndMinutes()
@@ -48,6 +50,7 @@ fun WeatherAPIResponse.toShortWeatherInfo(): ShortWeatherInfo {
             pressure = main.pressure,
             feelsLikeTemperature = "${main.feels_like.toInt()}",
             sunsetOrRaiseTime = sunsetOrRaiseTime,
+            isSunrise = isSunrise
         )
     }
 }
