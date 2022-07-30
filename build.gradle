@@ -6,7 +6,7 @@ buildscript {
         daggerVersion = "2.42"
         lifecycle_version = "2.5.0"
         kotlinVersion = "1.6.10"
-        navVersion = "2.5.0"
+        navVersion = "2.5.1"
         locationVersion = "20.0.0"
     }
 }
