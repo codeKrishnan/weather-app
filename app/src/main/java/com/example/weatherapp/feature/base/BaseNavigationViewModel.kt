@@ -10,6 +10,8 @@ import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
+import com.example.weatherapp.feature.home.util.HomePageErrorType
+import com.example.weatherapp.feature.home.util.HomePageState
 import com.example.weatherapp.feature.home.util.HomeUIState
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
@@ -31,6 +33,9 @@ class BaseNavigationViewModel(
 
     val locationSearchState = LocationSearchState()
 
+    private val homePageState = HomePageState()
+
+    //region Favourite Location
     fun getWeatherInformationOfFavouriteLocations(
         coordinates: List<Coordinates> = FavouriteLocations.defaultLocations,
     ) {
@@ -58,31 +63,6 @@ class BaseNavigationViewModel(
         }
     }
 
-    fun getWeatherDetailsForHome(
-        coordinates: Coordinates,
-    ) {
-        _homeUIState.postValue(HomeUIState.Loading)
-        clearSearchRecommendations()
-        viewModelScope.launch {
-            val result = getCurrentWeatherUseCase(
-                listOf(coordinates)
-            )
-
-            when (result) {
-                is Result.Error -> {
-                    _homeUIState.postValue(HomeUIState.Error)
-                }
-                is Result.Success -> {
-                    _homeUIState.postValue(
-                        HomeUIState.Success(
-                            result.data.first().toShortWeatherInfo()
-                        )
-                    )
-                }
-            }
-        }
-    }
-
     fun getRecommendationsForLocationSearch(query: String) {
         viewModelScope.launch {
             val result = getPlacesForSearchQueryUseCase(
@@ -97,4 +77,57 @@ class BaseNavigationViewModel(
     private fun clearSearchRecommendations() {
         locationSearchState.locationDetails.value = emptyList()
     }
+    //endregion Favourite Location
+
+    //region Home page
+    fun getWeatherDetailsForHome(
+        coordinates: Coordinates,
+    ) {
+        if (!homePageState.isLocationAlreadyUpdated) {
+            _homeUIState.postValue(HomeUIState.Loading)
+        }
+        homePageState.retrievedCoordinates = coordinates
+        viewModelScope.launch {
+            val result = getCurrentWeatherUseCase(
+                listOf(coordinates)
+            )
+
+            when (result) {
+                is Result.Error -> {
+                    _homeUIState.postValue(HomeUIState.Error(HomePageErrorType.GENERIC_ERROR))
+                }
+                is Result.Success -> {
+                    homePageState.isLocationAlreadyUpdated = true
+                    _homeUIState.postValue(
+                        HomeUIState.Success(
+                            result.data.first().toShortWeatherInfo()
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    fun onLocationPermissionDenied() {
+        _homeUIState.postValue(HomeUIState.Error(HomePageErrorType.LOCATION_PERMISSION_DENIED))
+    }
+
+    fun onLocationFetchFailed() {
+        _homeUIState.postValue(HomeUIState.Error(HomePageErrorType.GENERIC_ERROR))
+    }
+
+    fun onUserClickedRetryOnHomePage() {
+        _homeUIState.value = HomeUIState.Loading
+        with(homePageState.retrievedCoordinates) {
+            if (this == null) {
+                _homeUIState.value = HomeUIState.Error(HomePageErrorType.GENERIC_ERROR)
+                return
+            }
+            getWeatherDetailsForHome(
+                coordinates = this
+            )
+        }
+
+    }
+    //endregion Home page
 }

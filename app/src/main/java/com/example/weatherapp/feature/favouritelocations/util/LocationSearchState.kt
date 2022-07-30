@@ -20,6 +20,9 @@ interface LocationSearchDesignScope {
     var boxBorderStroke: BorderStroke
 }
 
+/**
+ * State holder for Location search feature.
+ */
 class LocationSearchState : LocationSearchDesignScope {
 
     var locationDetails = mutableStateOf(emptyList<LocationDetail>())

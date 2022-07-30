@@ -1,5 +1,6 @@
 package com.example.weatherapp.feature.favouritelocations.screen.widget
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,13 +21,15 @@ import com.example.weatherapp.baseui.widget.BrightText
 
 @Composable
 fun ErrorIndicator(
+    @StringRes errorMessage: Int = R.string.error_message,
     onRetryClicked: () -> Unit,
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(16.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
             modifier = Modifier
@@ -41,7 +44,7 @@ fun ErrorIndicator(
                 .clickable {
                     onRetryClicked()
                 },
-            text = stringResource(id = R.string.error_message)
+            text = stringResource(errorMessage)
         )
     }
 }

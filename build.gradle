@@ -7,6 +7,7 @@ buildscript {
         lifecycle_version = "2.5.0"
         kotlinVersion = "1.6.10"
         navVersion = "2.5.0"
+        locationVersion = "20.0.0"
     }
 }
 plugins {
