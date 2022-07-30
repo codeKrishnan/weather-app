@@ -66,6 +66,9 @@ class BaseNavigationActivity : ComponentActivity() {
                             viewModel = viewModel,
                             onWeatherCardClicked = { coordinates ->
                                 navigateToWeatherForecastScreen(coordinates)
+                            },
+                            onSearchResultSelected = { coordinates ->
+                                navigateToWeatherForecastScreen(coordinates)
                             }
                         )
                     },

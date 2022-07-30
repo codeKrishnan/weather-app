@@ -28,7 +28,7 @@ fun BrightText(
     modifier: Modifier = Modifier,
     text: String,
     fontSize: TextUnit = 16.sp,
-    textAlign: TextAlign = TextAlign.Center
+    textAlign: TextAlign = TextAlign.Start
 ) {
     Text(
         modifier = modifier,

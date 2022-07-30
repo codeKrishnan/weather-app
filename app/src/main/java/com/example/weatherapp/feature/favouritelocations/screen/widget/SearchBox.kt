@@ -23,14 +23,13 @@ import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.feature.favouritelocations.model.LocationDetail
-import com.example.weatherapp.feature.favouritelocations.screen.widget.search.SearchBar
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchDesignScope
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchState
 
 @Composable
 fun SearchBox(
     locationSearchState: LocationSearchState,
-    onLocationClick: (LocationDetail) -> Unit,
+    onResultSelected: (LocationDetail) -> Unit,
     onQueryChanged: (String) -> Unit,
 ) {
     val state = remember {
@@ -56,7 +55,8 @@ fun SearchBox(
                         Box(
                             modifier = Modifier
                                 .clickable {
-                                    onLocationClick(this@with[index])
+                                    onResultSelected(this@with[index])
+                                    state.locationDetails.value = emptyList()
                                 }
                                 .padding(vertical = 16.dp)
                         ) {
@@ -107,7 +107,7 @@ private fun SearchBoxPreview() {
                 )
             ))
         },
-        onLocationClick = {},
+        onResultSelected = {},
         onQueryChanged = {},
     )
 }

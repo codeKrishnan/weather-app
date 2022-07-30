@@ -10,9 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.feature.base.BaseNavigationViewModel
 import com.example.weatherapp.feature.favouritelocations.screen.widget.ErrorIndicator
@@ -26,6 +24,7 @@ import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
 fun FavouriteLocationsScreen(
     viewModel: BaseNavigationViewModel,
     onWeatherCardClicked: (Coordinates) -> Unit,
+    onSearchResultSelected: (Coordinates) -> Unit,
 ) {
     val uiState = viewModel.favouriteLocationsUIState.observeAsState()
 
@@ -43,13 +42,11 @@ fun FavouriteLocationsScreen(
         ) {
             SearchBox(
                 locationSearchState = viewModel.locationSearchState,
-                onLocationClick = { locationDetail ->
-                    viewModel.getWeatherInformationOfFavouriteLocations(
-                        listOf(
-                            Coordinates(
-                                latitude = locationDetail.latitude,
-                                longitude = locationDetail.longitude
-                            )
+                onResultSelected = { locationDetail ->
+                    onSearchResultSelected(
+                        Coordinates(
+                            latitude = locationDetail.latitude,
+                            longitude = locationDetail.longitude
                         )
                     )
                 },
@@ -77,13 +74,4 @@ fun FavouriteLocationsScreen(
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun FavouriteLocationsPreview() {
-    FavouriteLocationsScreen(
-        viewModel = viewModel(),
-        onWeatherCardClicked = {}
-    )
 }

@@ -1,16 +1,14 @@
-package com.example.weatherapp.feature.favouritelocations.screen.widget.search
+package com.example.weatherapp.feature.favouritelocations.screen.widget
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
 
 @Composable
@@ -34,14 +33,14 @@ fun SearchBar(
         modifier = Modifier
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceAround
     ) {
 
         Icon(
-            modifier = Modifier,
+            modifier = Modifier
+                .padding(16.dp),
             painter = painterResource(id = R.drawable.search),
             contentDescription = "Search Icon",
-            tint = colorResource(id = R.color.blue_icon_tint)
+            tint = colorResource(id = R.color.blue_icon_tint),
         )
 
         var text by remember { mutableStateOf("") }
@@ -71,11 +70,6 @@ fun SearchBar(
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent
             )
-        )
-        Icon(
-            imageVector = Icons.Outlined.Edit,
-            contentDescription = "Edit icon",
-            tint = colorResource(id = R.color.blue_icon_tint),
         )
     }
 }
