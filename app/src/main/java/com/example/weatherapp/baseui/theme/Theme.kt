@@ -6,37 +6,38 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import com.example.weatherapp.R
 
 @SuppressLint("ConflictingOnColor")
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Color(color = R.color.grey_cards),
-    background = Color(color = R.color.grey_background),
-    surface = Color(color = R.color.grey_background),
-    onPrimary = Color(color = R.color.white_text),
-    onSecondary = Color(color = R.color.dim_text),
-    onBackground = Color(color = R.color.white_text),
-    onSurface = Color(color = R.color.dim_text),
+    primary = GreyBackground,
+    primaryVariant = GreyCardBackground,
+    secondary = GreyCardBackground,
+    background = GreyBackground,
+    surface = GreyCardBackground,
+    onPrimary = WhiteBright,
+    onSecondary = WhiteDim,
+    onBackground = WhiteBright,
+    onSurface = WhiteDim,
 )
 
 @SuppressLint("ConflictingOnColor")
 private val LightColorPalette = lightColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Color(color = R.color.grey_cards),
-    background = Color(color = R.color.grey_background),
-    surface = Color(color = R.color.grey_background),
-    onPrimary = Color(color = R.color.white_text),
-    onSecondary = Color(color = R.color.dim_text),
-    onBackground = Color(color = R.color.white_text),
-    onSurface = Color(color = R.color.dim_text),
+    primary = GreyBackground,
+    primaryVariant = GreyCardBackground,
+    secondary = GreyCardBackground,
+    background = GreyBackground,
+    surface = GreyCardBackground,
+    onPrimary = WhiteBright,
+    onSecondary = WhiteDim,
+    onBackground = WhiteBright,
+    onSurface = WhiteDim,
 )
 
 @Composable
-fun WeatherAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun WeatherAppTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit,
+) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
