@@ -11,8 +11,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.feature.base.BaseNavigationViewModel
-import com.example.weatherapp.feature.favouritelocations.screen.widget.ErrorIndicator
-import com.example.weatherapp.feature.favouritelocations.screen.widget.LoadingIndicator
+import com.example.weatherapp.baseui.widget.ErrorIndicator
+import com.example.weatherapp.baseui.widget.LoadingIndicator
 import com.example.weatherapp.feature.favouritelocations.screen.widget.SearchBox
 import com.example.weatherapp.feature.favouritelocations.screen.widget.WeatherQuickPreviewWidget
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates

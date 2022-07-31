@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import com.example.weatherapp.R
 import com.example.weatherapp.feature.base.BaseNavigationViewModel
-import com.example.weatherapp.feature.favouritelocations.screen.widget.ErrorIndicator
-import com.example.weatherapp.feature.favouritelocations.screen.widget.LoadingIndicator
+import com.example.weatherapp.baseui.widget.ErrorIndicator
+import com.example.weatherapp.baseui.widget.LoadingIndicator
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.home.screen.widget.HomeScreenContent
 import com.example.weatherapp.feature.home.util.HomePageErrorType

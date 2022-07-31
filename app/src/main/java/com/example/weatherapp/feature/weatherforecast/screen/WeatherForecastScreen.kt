@@ -13,8 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.weatherapp.baseui.widget.QuickWeatherInfoBar
-import com.example.weatherapp.feature.favouritelocations.screen.widget.ErrorIndicator
-import com.example.weatherapp.feature.favouritelocations.screen.widget.LoadingIndicator
+import com.example.weatherapp.baseui.widget.ErrorIndicator
+import com.example.weatherapp.baseui.widget.LoadingIndicator
 import com.example.weatherapp.feature.weatherforecast.WeatherForecastViewModel
 import com.example.weatherapp.feature.weatherforecast.screen.widget.DetailedForecastInfoWidget
 import com.example.weatherapp.feature.weatherforecast.screen.widget.Header

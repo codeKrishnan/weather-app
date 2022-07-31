@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.favouritelocations.screen.widget
+package com.example.weatherapp.baseui.widget
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
 import com.example.weatherapp.baseui.theme.BlueTint
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
-import com.example.weatherapp.baseui.widget.BrightText
 
 @Composable
 fun ErrorIndicator(
