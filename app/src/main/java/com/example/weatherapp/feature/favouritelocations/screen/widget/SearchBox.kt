@@ -1,7 +1,6 @@
 package com.example.weatherapp.feature.favouritelocations.screen.widget
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -17,10 +16,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.weatherapp.R
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.feature.favouritelocations.model.LocationDetail
 import com.example.weatherapp.feature.favouritelocations.util.LocationSearchDesignScope
@@ -46,8 +43,7 @@ fun SearchBox(
         AnimatedVisibility(visible = !state.shouldWrapContentHeight) {
             LazyColumn(
                 modifier = Modifier
-                    .autoComplete(locationSearchDesignScope = state)
-                    .background(color = colorResource(id = R.color.grey_background)),
+                    .autoComplete(locationSearchDesignScope = state),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 with(state.locationDetails.value) {
@@ -69,7 +65,6 @@ fun SearchBox(
             }
         }
     }
-
 }
 
 private fun Modifier.autoComplete(

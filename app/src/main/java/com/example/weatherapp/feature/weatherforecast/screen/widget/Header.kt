@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.weatherapp.R
 import com.example.weatherapp.baseui.widget.BlueCallOut
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
@@ -25,9 +23,7 @@ import kotlin.math.roundToInt
 @Composable
 fun Header(shortWeatherInfo: ShortWeatherInfo) {
     with(shortWeatherInfo) {
-        Surface(
-            color = colorResource(id = R.color.grey_background)
-        ) {
+        Surface {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

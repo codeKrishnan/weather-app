@@ -1,6 +1,5 @@
 package com.example.weatherapp.feature.about.screen
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,13 +28,11 @@ fun AboutScreen(
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorResource(id = R.color.grey_background))
             .padding(16.dp)
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .background(colorResource(id = R.color.grey_background)),
+                .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

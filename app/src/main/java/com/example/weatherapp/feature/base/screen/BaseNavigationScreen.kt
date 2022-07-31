@@ -1,6 +1,7 @@
 package com.example.weatherapp.feature.base.screen
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,6 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.GreyBackground
 import com.example.weatherapp.baseui.widget.DimText
 import com.example.weatherapp.baseui.widget.DimTintedIcon
 
@@ -43,21 +45,20 @@ fun BaseNavigationScreen(
     AboutScreen: @Composable () -> Unit,
 ) {
     val navController = rememberNavController()
-
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
-        backgroundColor = colorResource(id = R.color.grey_background),
         bottomBar = {
             BottomNavigation(
                 modifier = Modifier
                     .fillMaxWidth(),
-                backgroundColor = colorResource(id = R.color.grey_background)
+                backgroundColor = colorResource(id = R.color.grey_background),
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
                 Screen.bottomNavigationList.forEach { screen ->
                     BottomNavigationItem(
+                        modifier = Modifier.background(GreyBackground),
                         icon = {
                             DimTintedIcon(
                                 modifier = Modifier

@@ -1,7 +1,6 @@
 package com.example.weatherapp.feature.home.screen.widget
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
@@ -24,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.baseui.widget.BlueCallOut
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.baseui.widget.DimText
@@ -45,7 +45,6 @@ fun HomeScreenContent(
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorResource(id = R.color.grey_background))
             .padding(18.dp)
             .scrollable(
                 rememberScrollState(),
@@ -53,8 +52,7 @@ fun HomeScreenContent(
             )
     ) {
         Column(
-            modifier = Modifier
-                .background(colorResource(id = R.color.grey_background)),
+            modifier = Modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             IconText(
@@ -133,23 +131,25 @@ fun HomeScreenContent(
 @Preview
 @Composable
 fun HomeScreenContentPreview() {
-    HomeScreenContent(
-        shortWeatherInfo = ShortWeatherInfo(
-            coordinates = Coordinates(
-                latitude = "12",
-                longitude = "12"
+    WeatherAppTheme {
+        HomeScreenContent(
+            shortWeatherInfo = ShortWeatherInfo(
+                coordinates = Coordinates(
+                    latitude = "12",
+                    longitude = "12"
+                ),
+                currentTemperature = 25.00,
+                countryCode = "IND",
+                cityName = "Delhi",
+                windSpeed = "2",
+                humidity = "23",
+                weatherType = WeatherType.Clear,
+                weatherDescription = "Clear",
+                pressure = "100",
+                sunsetOrRaiseTime = "6:23 AM",
+                feelsLikeTemperature = "23"
             ),
-            currentTemperature = 25.00,
-            countryCode = "IND",
-            cityName = "Delhi",
-            windSpeed = "2",
-            humidity = "23",
-            weatherType = WeatherType.Clear,
-            weatherDescription = "Clear",
-            pressure = "100",
-            sunsetOrRaiseTime = "6:23 AM",
-            feelsLikeTemperature = "23"
-        ),
-        onShowWeatherForecastClicked = {}
-    )
+            onShowWeatherForecastClicked = {}
+        )
+    }
 }

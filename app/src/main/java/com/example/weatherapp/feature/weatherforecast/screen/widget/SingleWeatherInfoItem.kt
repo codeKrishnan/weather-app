@@ -1,6 +1,5 @@
 package com.example.weatherapp.feature.weatherforecast.screen.widget
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,12 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weatherapp.R
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
@@ -28,9 +25,6 @@ import com.example.weatherapp.feature.weatherforecast.model.WeatherSnippet
 fun SingleWeatherInfoItem(weatherSnippet: WeatherSnippet) {
     Column(
         modifier = Modifier
-            .background(
-                colorResource(id = R.color.grey_background)
-            )
             .padding(
                 end = 32.dp,
                 top = 12.dp,

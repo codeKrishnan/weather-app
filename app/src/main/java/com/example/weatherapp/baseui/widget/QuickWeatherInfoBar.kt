@@ -1,14 +1,13 @@
 package com.example.weatherapp.baseui.widget
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
 import com.example.weatherapp.feature.favouritelocations.screen.widget.IconText
@@ -24,7 +23,6 @@ fun QuickWeatherInfoBar(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(colorResource(id = R.color.grey_background))
                 .defaultPadding(),
             horizontalArrangement = horizontalArrangement
 
@@ -39,20 +37,22 @@ fun QuickWeatherInfoBar(
 @Preview(showBackground = true)
 @Composable
 private fun QuickWeatherInfoBarPreview() {
-    QuickWeatherInfoBar(
-        shortWeatherInfo = ShortWeatherInfo(
-            coordinates = Coordinates(
-                latitude = "12",
-                longitude = "12"
+    WeatherAppTheme {
+        QuickWeatherInfoBar(
+            shortWeatherInfo = ShortWeatherInfo(
+                coordinates = Coordinates(
+                    latitude = "12",
+                    longitude = "12"
+                ),
+                currentTemperature = 25.00,
+                countryCode = "IND",
+                cityName = "Delhi",
+                windSpeed = "2",
+                humidity = "23",
+                weatherType = WeatherType.Clear,
+                weatherDescription = "Clear",
+                pressure = "100",
             ),
-            currentTemperature = 25.00,
-            countryCode = "IND",
-            cityName = "Delhi",
-            windSpeed = "2",
-            humidity = "23",
-            weatherType = WeatherType.Clear,
-            weatherDescription = "Clear",
-            pressure = "100",
-        ),
-    )
+        )
+    }
 }

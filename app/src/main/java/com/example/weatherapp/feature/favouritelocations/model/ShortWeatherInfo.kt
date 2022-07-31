@@ -29,7 +29,7 @@ fun WeatherAPIResponse.toShortWeatherInfo(): ShortWeatherInfo {
     with(this) {
 
         var isSunrise = false
-        val sunsetOrRaiseTime = if (sys.sunrise.isAfter()) {
+        val sunsetOrRaiseTime = if (!sys.sunrise.isAfter()) {
             isSunrise = true
             sys.sunrise.toHoursAndMinutes()
         } else {

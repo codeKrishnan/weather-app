@@ -24,6 +24,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.GreyBackground
 
 @Composable
 fun SearchBar(
@@ -65,7 +66,7 @@ fun SearchBar(
             colors = TextFieldDefaults.textFieldColors(
                 textColor = colorResource(id = R.color.white_text),
                 disabledTextColor = Color.Transparent,
-                backgroundColor = colorResource(id = R.color.grey_background),
+                backgroundColor = GreyBackground,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent

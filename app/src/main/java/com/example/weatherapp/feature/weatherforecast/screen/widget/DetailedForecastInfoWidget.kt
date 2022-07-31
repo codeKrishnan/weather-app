@@ -1,13 +1,9 @@
 package com.example.weatherapp.feature.weatherforecast.screen.widget
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.weatherapp.R
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.feature.favouritelocations.model.WeatherType
 import com.example.weatherapp.feature.weatherforecast.model.WeatherSnippet
@@ -22,12 +18,7 @@ fun DetailedForecastInfoWidget(
         forecastState.selectedDay
     }
 
-    LazyColumn(
-        modifier = Modifier
-            .background(
-                colorResource(id = R.color.grey_background)
-            )
-    ) {
+    LazyColumn {
         items(weatherForecastDetails.size) { index ->
             DetailedWeatherInfoRow(
                 selectedDay = selectedDay.value,

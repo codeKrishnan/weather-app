@@ -9,9 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
-import com.example.weatherapp.R
 import com.example.weatherapp.feature.base.BaseNavigationViewModel
 import com.example.weatherapp.feature.favouritelocations.screen.widget.ErrorIndicator
 import com.example.weatherapp.feature.favouritelocations.screen.widget.LoadingIndicator
@@ -28,9 +26,7 @@ fun FavouriteLocationsScreen(
 ) {
     val uiState = viewModel.favouriteLocationsUIState.observeAsState()
 
-    Surface(
-        color = colorResource(id = R.color.grey_background)
-    ) {
+    Surface {
         Column(
             modifier = Modifier
                 .fillMaxSize()
