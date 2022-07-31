@@ -17,14 +17,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.BlueTint
 import com.example.weatherapp.baseui.theme.GreyBackground
+import com.example.weatherapp.baseui.theme.WhiteBright
+import com.example.weatherapp.baseui.theme.WhiteDim
 
 @Composable
 fun SearchBar(
@@ -41,7 +43,7 @@ fun SearchBar(
                 .padding(16.dp),
             painter = painterResource(id = R.drawable.search),
             contentDescription = "Search Icon",
-            tint = colorResource(id = R.color.blue_icon_tint),
+            tint = BlueTint,
         )
 
         var text by remember { mutableStateOf("") }
@@ -51,7 +53,7 @@ fun SearchBar(
             label = {
                 Text(
                     text = "Search",
-                    color = colorResource(id = R.color.dim_text)
+                    color = WhiteDim
                 )
             },
             onValueChange = { query ->
@@ -64,7 +66,7 @@ fun SearchBar(
             ),
             keyboardActions = KeyboardActions(onDone = { }),
             colors = TextFieldDefaults.textFieldColors(
-                textColor = colorResource(id = R.color.white_text),
+                textColor = WhiteBright,
                 disabledTextColor = Color.Transparent,
                 backgroundColor = GreyBackground,
                 focusedIndicatorColor = Color.Transparent,

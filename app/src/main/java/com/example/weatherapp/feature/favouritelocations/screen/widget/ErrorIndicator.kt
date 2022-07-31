@@ -12,13 +12,13 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.BlueTint
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.baseui.widget.BrightText
 
@@ -43,7 +43,7 @@ fun ErrorIndicator(
                     .padding(bottom = 16.dp),
                 painter = painterResource(id = R.drawable.sad),
                 contentDescription = "Something went wrong icon",
-                tint = colorResource(id = R.color.blue_icon_tint)
+                tint = BlueTint
             )
             BrightText(
                 modifier = Modifier

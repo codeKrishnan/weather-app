@@ -13,11 +13,11 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.WhiteDim
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.baseui.widget.DimText
 
@@ -80,7 +80,7 @@ fun DetailsItem(
                     ),
                 painter = painterResource(id = R.drawable.right_arrow),
                 contentDescription = "Go",
-                tint = colorResource(id = R.color.dim_text)
+                tint = WhiteDim
             )
         }
     }

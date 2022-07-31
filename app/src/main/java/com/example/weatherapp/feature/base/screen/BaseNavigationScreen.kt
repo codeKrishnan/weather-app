@@ -12,7 +12,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -52,7 +51,7 @@ fun BaseNavigationScreen(
             BottomNavigation(
                 modifier = Modifier
                     .fillMaxWidth(),
-                backgroundColor = colorResource(id = R.color.grey_background),
+                backgroundColor = GreyBackground,
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination

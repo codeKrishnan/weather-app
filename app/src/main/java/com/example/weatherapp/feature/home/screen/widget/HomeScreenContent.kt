@@ -17,12 +17,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.SkyBlue
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.baseui.widget.BlueCallOut
 import com.example.weatherapp.baseui.widget.BrightText
@@ -110,13 +110,13 @@ fun HomeScreenContent(
                         .padding(end = 12.dp),
                     fontSize = 18.sp,
                     text = "Next 5 days",
-                    color = colorResource(id = R.color.blue_text)
+                    color = SkyBlue
                 )
                 Icon(
                     modifier = Modifier
                         .size(16.dp)
                         .padding(top = 4.dp),
-                    tint = colorResource(id = R.color.blue_text),
+                    tint = SkyBlue,
                     painter = painterResource(id = R.drawable.right_arrow),
                     contentDescription = "Weather forecast for next five days"
                 )

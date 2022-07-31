@@ -3,11 +3,11 @@ package com.example.weatherapp.baseui.widget
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.WhiteBright
+import com.example.weatherapp.baseui.theme.WhiteDim
 
 @Composable
 fun DimText(
@@ -19,7 +19,7 @@ fun DimText(
         modifier = modifier,
         text = text,
         fontSize = fontSize,
-        color = colorResource(id = R.color.dim_text)
+        color = WhiteDim
     )
 }
 
@@ -34,7 +34,7 @@ fun BrightText(
         modifier = modifier,
         text = text,
         fontSize = fontSize,
-        color = colorResource(id = R.color.white_text),
+        color = WhiteBright,
         textAlign = textAlign
     )
 }
@@ -48,6 +48,6 @@ fun BrightTextLarge(
         modifier = modifier,
         text = text,
         fontSize = 32.sp,
-        color = colorResource(id = R.color.white_text)
+        color = WhiteBright
     )
 }

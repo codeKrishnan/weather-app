@@ -19,11 +19,12 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
+import com.example.weatherapp.baseui.theme.BlueTint
+import com.example.weatherapp.baseui.theme.GreyCardBackground
 import com.example.weatherapp.baseui.widget.BrightText
 import com.example.weatherapp.baseui.widget.BrightTextLarge
 import com.example.weatherapp.baseui.widget.DimText
@@ -66,7 +67,7 @@ private fun WeatherQuickPreviewCard(
                 onClick(shortWeatherInfo.coordinates)
             }
             .wrapContentSize(),
-        color = colorResource(id = R.color.grey_cards),
+        color = GreyCardBackground,
         shape = RoundedCornerShape(16.dp)
     ) {
         Row(
@@ -142,7 +143,7 @@ fun IconText(
                 .padding(end = 8.dp),
             painter = painterResource(id = iconResource),
             contentDescription = "Weather icon",
-            tint = colorResource(id = R.color.blue_icon_tint)
+            tint = BlueTint
         )
         if (isBrightText) {
             BrightText(text = text)

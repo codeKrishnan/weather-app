@@ -7,13 +7,4 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
-    
-    <color name="grey_background">#11232E</color>
-    <color name="grey_cards">#152C39</color>
-    <color name="white_text">#FFFFFB</color>
-    <color name="dim_text">#5F89A9</color>
-    <color name="violet_pill_background">#353361</color>
-    <color name="blue_icon_tint">#6693AB</color>
-    <color name="blue_text">#107fc4</color>
 </resources>
