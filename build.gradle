@@ -3,11 +3,17 @@ buildscript {
         compose_ui_version = '1.1.1'
         moshiVersion = "1.13.0"
         retrofitVersion = "2.9.0"
-        daggerVersion = "2.42"
-        lifecycle_version = "2.5.0"
+        daggerVersion = "2.44.2"
+        androidxLifecycleVersion = "2.5.1"
         kotlinVersion = "1.6.10"
-        navVersion = "2.5.1"
-        locationVersion = "20.0.0"
+        locationVersion = "21.0.1"
+        coreKtxVersion = "1.9.0"
+        androidxActivityVersion = "1.6.1"
+        composeVersion = "1.3.1"
+        androidxNavigationVersion = "2.5.3"
+        androidxFragmentVersion = "1.5.4"
+        junitVersion = "4.13.2"
+        okHttpVersion = "4.10.0"
     }
 }
 plugins {
