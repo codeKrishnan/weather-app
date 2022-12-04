@@ -130,7 +130,7 @@ class BaseNavigationActivity : ComponentActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    fun getLocation() {
+    private fun getLocation() {
         val locationRequest: LocationRequest = LocationRequest.create().apply {
             interval = 60000
             fastestInterval = 30000
@@ -152,9 +152,11 @@ class BaseNavigationActivity : ComponentActivity() {
                 }
             }
         }
-        fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+        fusedLocationProviderClient.requestLocationUpdates(
+            locationRequest,
             locationCallback,
-            Looper.myLooper())
+            Looper.myLooper()
+        )
     }
 
     //region Navigation

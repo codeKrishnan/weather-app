@@ -1,11 +1,11 @@
-package com.example.weatherapp.usecase.weatherforecast.base
+package com.example.weatherapp.data.weatherforecast.repository.base
 
 import com.example.weatherapp.data.common.Result
 import com.example.weatherapp.data.weatherforecast.model.ForecastAPIResponse
 
-interface GetWeatherForecastForLocationUseCase {
+interface WeatherForecastRepository {
 
-    suspend operator fun invoke(
+    suspend fun getWeatherForecastForLocation(
         latitude: String,
         longitude: String,
     ): Result<ForecastAPIResponse>

@@ -1,16 +1,16 @@
 package com.example.weatherapp.di
 
 import com.example.weatherapp.BuildConfig
-import com.example.weatherapp.api.common.adapter.WeatherTypeEnumAdapter
-import com.example.weatherapp.api.currentweather.repository.CurrentWeatherAPIRepositoryImpl
-import com.example.weatherapp.api.currentweather.repository.base.CurrentWeatherRepository
-import com.example.weatherapp.api.currentweather.service.CurrentWeatherService
-import com.example.weatherapp.api.geocoding.repository.GeoCodingAPIRepositoryImpl
-import com.example.weatherapp.api.geocoding.repository.base.GeoCodingRepository
-import com.example.weatherapp.api.geocoding.service.GeoCodingAPIService
-import com.example.weatherapp.api.weatherforecast.repository.WeatherForecastAPIRepositoryImpl
-import com.example.weatherapp.api.weatherforecast.repository.base.WeatherForecastRepository
-import com.example.weatherapp.api.weatherforecast.service.WeatherForecastService
+import com.example.weatherapp.data.common.adapter.WeatherTypeEnumAdapter
+import com.example.weatherapp.data.currentweather.repository.CurrentWeatherAPIRepositoryImpl
+import com.example.weatherapp.data.currentweather.repository.base.CurrentWeatherRepository
+import com.example.weatherapp.data.currentweather.service.CurrentWeatherService
+import com.example.weatherapp.data.geocoding.repository.GeoCodingAPIRepositoryImpl
+import com.example.weatherapp.data.geocoding.repository.base.GeoCodingRepository
+import com.example.weatherapp.data.geocoding.service.GeoCodingAPIService
+import com.example.weatherapp.data.weatherforecast.repository.WeatherForecastAPIRepositoryImpl
+import com.example.weatherapp.data.weatherforecast.repository.base.WeatherForecastRepository
+import com.example.weatherapp.data.weatherforecast.service.WeatherForecastService
 import com.example.weatherapp.usecase.currentweather.GetCurrentWeatherUseCaseImpl
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.geocoding.GetPlacesForSearchQueryUseCaseImpl

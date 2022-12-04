@@ -1,7 +1,7 @@
 package com.example.weatherapp.feature.favouritelocations.model
 
 import com.example.weatherapp.R
-import com.example.weatherapp.api.currentweather.model.WeatherAPIResponse
+import com.example.weatherapp.data.currentweather.model.WeatherAPIResponse
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.util.isAfter
 import com.example.weatherapp.util.toHoursAndMinutes
