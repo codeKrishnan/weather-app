@@ -40,7 +40,7 @@ fun WeatherQuickPreviewWidget(
     onClick: (Coordinates) -> Unit,
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 150.dp),
+        columns = GridCells.Adaptive(minSize = 200.dp),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
