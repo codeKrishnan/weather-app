@@ -27,9 +27,9 @@ fun QuickWeatherInfoBar(
             horizontalArrangement = horizontalArrangement
 
         ) {
-            IconText(iconResource = R.drawable.droplet, text = "$humidity %")
-            IconText(iconResource = R.drawable.wind, text = "$windSpeed m/s")
-            IconText(iconResource = R.drawable.pressure_gauge, text = "$pressure hPa")
+            IconText(iconResource = R.drawable.droplet, text = "$humidity %", maxLines = 1)
+            IconText(iconResource = R.drawable.wind, text = "$windSpeed m/s", maxLines = 1)
+            IconText(iconResource = R.drawable.pressure_gauge, text = "$pressure hPa", maxLines = 1)
         }
     }
 }

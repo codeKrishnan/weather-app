@@ -1,8 +1,8 @@
 package com.example.weatherapp.usecase.weatherforecast
 
-import com.example.weatherapp.api.common.Result
-import com.example.weatherapp.api.weatherforecast.model.ForecastAPIResponse
-import com.example.weatherapp.api.weatherforecast.repository.base.WeatherForecastRepository
+import com.example.weatherapp.data.common.Result
+import com.example.weatherapp.data.weatherforecast.model.ForecastAPIResponse
+import com.example.weatherapp.data.weatherforecast.repository.base.WeatherForecastRepository
 import com.example.weatherapp.usecase.weatherforecast.base.GetWeatherForecastForLocationUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

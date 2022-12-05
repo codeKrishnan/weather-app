@@ -1,6 +1,6 @@
 package com.example.weatherapp.feature.weatherforecast.model
 
-import com.example.weatherapp.api.weatherforecast.model.ForecastAPIResponse
+import com.example.weatherapp.data.weatherforecast.model.ForecastAPIResponse
 import com.example.weatherapp.feature.favouritelocations.model.ShortWeatherInfo
 import com.example.weatherapp.util.toTimeInText
 import com.example.weatherapp.util.toWeekDayName
