@@ -130,10 +130,13 @@ fun IconText(
     @DrawableRes iconResource: Int,
     text: String,
     isBrightText: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Row(
+        modifier = Modifier
+            .padding(4.dp),
         horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             modifier = Modifier
@@ -144,9 +147,15 @@ fun IconText(
             tint = BlueTint
         )
         if (isBrightText) {
-            BrightText(text = text)
+            BrightText(
+                text = text,
+                maxLines = maxLines
+            )
         } else {
-            DimText(text = text)
+            DimText(
+                text = text,
+                maxLines = maxLines
+            )
         }
     }
 }
