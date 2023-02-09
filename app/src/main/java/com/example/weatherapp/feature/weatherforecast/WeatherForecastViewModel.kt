@@ -13,9 +13,12 @@ import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastState
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastUIState
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.weatherforecast.base.GetWeatherForecastForLocationUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WeatherForecastViewModel(
+@HiltViewModel
+class WeatherForecastViewModel @Inject constructor(
     private val getWeatherForecastForLocationUseCase: GetWeatherForecastForLocationUseCase,
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
 ) : ViewModel() {

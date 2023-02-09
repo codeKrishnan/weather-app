@@ -15,9 +15,12 @@ import com.example.weatherapp.feature.home.util.HomePageState
 import com.example.weatherapp.feature.home.util.HomeUIState
 import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class BaseNavigationViewModel(
+@HiltViewModel
+class BaseNavigationViewModel @Inject constructor(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
     private val getPlacesForSearchQueryUseCase: GetPlacesForSearchQueryUseCase,
 ) : ViewModel() {
