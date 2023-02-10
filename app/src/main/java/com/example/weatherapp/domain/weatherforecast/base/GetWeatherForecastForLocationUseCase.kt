@@ -1,4 +1,4 @@
-package com.example.weatherapp.usecase.weatherforecast.base
+package com.example.weatherapp.domain.weatherforecast.base
 
 import com.example.weatherapp.data.common.Result
 import com.example.weatherapp.data.weatherforecast.model.ForecastAPIResponse

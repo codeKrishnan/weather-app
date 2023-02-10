@@ -1,10 +1,10 @@
-package com.example.weatherapp.usecase.currentweather
+package com.example.weatherapp.domain.currentweather
 
 import com.example.weatherapp.data.common.Result
 import com.example.weatherapp.data.currentweather.model.WeatherAPIResponse
 import com.example.weatherapp.data.currentweather.repository.base.CurrentWeatherRepository
+import com.example.weatherapp.domain.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
-import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

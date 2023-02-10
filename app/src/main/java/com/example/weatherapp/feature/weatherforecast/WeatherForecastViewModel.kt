@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.common.Result
+import com.example.weatherapp.domain.currentweather.base.GetCurrentWeatherUseCase
+import com.example.weatherapp.domain.weatherforecast.base.GetWeatherForecastForLocationUseCase
 import com.example.weatherapp.feature.favouritelocations.model.toShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.weatherforecast.model.CompleteWeatherInfoWrapper
 import com.example.weatherapp.feature.weatherforecast.model.toWeatherForecastDetails
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastState
 import com.example.weatherapp.feature.weatherforecast.util.WeatherForecastUIState
-import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
-import com.example.weatherapp.usecase.weatherforecast.base.GetWeatherForecastForLocationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

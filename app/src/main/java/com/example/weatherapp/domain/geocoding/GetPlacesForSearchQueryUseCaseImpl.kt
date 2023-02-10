@@ -1,10 +1,10 @@
-package com.example.weatherapp.usecase.geocoding
+package com.example.weatherapp.domain.geocoding
 
 import com.example.weatherapp.data.common.Result
 import com.example.weatherapp.data.geocoding.repository.base.GeoCodingRepository
+import com.example.weatherapp.domain.geocoding.base.GetPlacesForSearchQueryUseCase
 import com.example.weatherapp.feature.favouritelocations.model.LocationDetail
 import com.example.weatherapp.feature.favouritelocations.model.toLocationDetail
-import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

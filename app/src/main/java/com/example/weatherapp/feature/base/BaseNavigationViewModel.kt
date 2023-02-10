@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.common.Result
+import com.example.weatherapp.domain.currentweather.base.GetCurrentWeatherUseCase
+import com.example.weatherapp.domain.geocoding.base.GetPlacesForSearchQueryUseCase
 import com.example.weatherapp.feature.favouritelocations.model.toShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
@@ -13,8 +15,6 @@ import com.example.weatherapp.feature.favouritelocations.util.LocationSearchStat
 import com.example.weatherapp.feature.home.util.HomePageErrorType
 import com.example.weatherapp.feature.home.util.HomePageState
 import com.example.weatherapp.feature.home.util.HomeUIState
-import com.example.weatherapp.usecase.currentweather.base.GetCurrentWeatherUseCase
-import com.example.weatherapp.usecase.geocoding.base.GetPlacesForSearchQueryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

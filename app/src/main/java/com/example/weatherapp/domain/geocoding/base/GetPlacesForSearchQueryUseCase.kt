@@ -1,4 +1,4 @@
-package com.example.weatherapp.usecase.geocoding.base
+package com.example.weatherapp.domain.geocoding.base
 
 import com.example.weatherapp.data.common.Result
 import com.example.weatherapp.feature.favouritelocations.model.LocationDetail
