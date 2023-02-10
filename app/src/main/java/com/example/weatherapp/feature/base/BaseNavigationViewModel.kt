@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.common.Result
 import com.example.weatherapp.domain.currentweather.base.GetCurrentWeatherUseCase
 import com.example.weatherapp.domain.geocoding.base.GetPlacesForSearchQueryUseCase
+import com.example.weatherapp.domain.userpreferences.IsFavouritesScreenModifiedUseCase
 import com.example.weatherapp.feature.favouritelocations.model.toShortWeatherInfo
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocations
@@ -23,6 +24,7 @@ import javax.inject.Inject
 class BaseNavigationViewModel @Inject constructor(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
     private val getPlacesForSearchQueryUseCase: GetPlacesForSearchQueryUseCase,
+    private val isFavouritesScreenModifiedUseCase: IsFavouritesScreenModifiedUseCase,
 ) : ViewModel() {
 
     private val _favouriteLocationUIState: MutableLiveData<FavouriteLocationsUIState> =
@@ -40,13 +42,17 @@ class BaseNavigationViewModel @Inject constructor(
 
     //region Favourite Location
     fun getWeatherInformationOfFavouriteLocations(
-        coordinates: List<Coordinates> = FavouriteLocations.defaultLocations,
     ) {
         _favouriteLocationUIState.postValue(FavouriteLocationsUIState.Loading)
         clearSearchRecommendations()
         viewModelScope.launch {
+            val favouriteLocationsCoordinates = if (isFavouritesScreenModifiedUseCase.invoke()) {
+                emptyList()
+            } else {
+                FavouriteLocations.defaultLocations
+            }
             val result = getCurrentWeatherUseCase(
-                coordinates
+                favouriteLocationsCoordinates
             )
 
             when (result) {
