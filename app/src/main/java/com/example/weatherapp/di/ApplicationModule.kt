@@ -5,11 +5,13 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
 import com.example.weatherapp.BuildConfig
+import com.example.weatherapp.data.FavouriteLocations
 import com.example.weatherapp.data.UserPreferences
 import com.example.weatherapp.data.common.adapter.WeatherTypeEnumAdapter
 import com.example.weatherapp.data.currentweather.repository.CurrentWeatherAPIRepositoryImpl
 import com.example.weatherapp.data.currentweather.repository.base.CurrentWeatherRepository
 import com.example.weatherapp.data.currentweather.service.CurrentWeatherService
+import com.example.weatherapp.data.favouritelocations.FavouriteLocationsDeserializer
 import com.example.weatherapp.data.geocoding.repository.GeoCodingAPIRepositoryImpl
 import com.example.weatherapp.data.geocoding.repository.base.GeoCodingRepository
 import com.example.weatherapp.data.geocoding.service.GeoCodingAPIService
@@ -114,6 +116,19 @@ class ApplicationModule {
         )
     }
 
+    @Singleton
+    @Provides
+    fun provideFavouriteLocationsDataStore(
+        @ApplicationContext applicationContext: Context,
+    ): DataStore<FavouriteLocations> {
+        return DataStoreFactory.create(
+            serializer = FavouriteLocationsDeserializer,
+            produceFile = {
+                applicationContext.dataStoreFile(FAVOURITES_LOCATIONS_DATA_STORE_FILE_NAME)
+            }
+        )
+    }
+
     @Module
     @InstallIn(SingletonComponent::class)
     internal interface BindsModule {
@@ -151,5 +166,6 @@ class ApplicationModule {
 
     companion object {
         private const val USER_PREFERENCES_DATA_STORE_FILE_NAME = "user_preferences.pb"
+        private const val FAVOURITES_LOCATIONS_DATA_STORE_FILE_NAME = "favourite_locations.db"
     }
 }

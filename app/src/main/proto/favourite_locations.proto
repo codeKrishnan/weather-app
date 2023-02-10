@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "com.example.weatherapp.data";
+option java_multiple_files = true;
+
+message FavouriteLocations {
+  repeated Coordinates coordinates = 1;
+}
+
+message Coordinates {
+  string lat = 1;
+  string lon = 2;
+}

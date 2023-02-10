@@ -9,7 +9,7 @@ class Coordinates(
     val longitude: String,
 ) : Parcelable
 
-object FavouriteLocations {
+object SavedLocations {
 
     val defaultLocations = listOf(
         Coordinates(
