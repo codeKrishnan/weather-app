@@ -1,6 +1,6 @@
 package com.example.weatherapp.feature.favouritelocations.model
 
-import com.example.weatherapp.api.geocoding.model.GeocodingAPIResponse
+import com.example.weatherapp.data.geocoding.model.GeocodingAPIResponse
 
 data class LocationDetail(
     val cityName: String,

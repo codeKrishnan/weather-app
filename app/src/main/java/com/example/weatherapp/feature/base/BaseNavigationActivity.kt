@@ -13,7 +13,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat.checkSelfPermission
-import com.example.weatherapp.WeatherApplication
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.feature.about.screen.AboutScreen
 import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
@@ -26,15 +25,12 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class BaseNavigationActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var favouriteLocationViewModelFactory: BaseNavigationViewModelFactory
-
-    private val viewModel: BaseNavigationViewModel by viewModels { favouriteLocationViewModelFactory }
+    private val viewModel: BaseNavigationViewModel by viewModels()
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -55,7 +51,6 @@ class BaseNavigationActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setUpDagger()
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         setContent {
@@ -95,13 +90,6 @@ class BaseNavigationActivity : ComponentActivity() {
         viewModel.getWeatherInformationOfFavouriteLocations()
     }
 
-    private fun setUpDagger() {
-        (application as WeatherApplication).applicationComponent
-            .plus()
-            .create()
-            .inject(this)
-    }
-
     private fun getUserLocationPermission() {
         when {
             checkSelfPermission(
@@ -123,14 +111,15 @@ class BaseNavigationActivity : ComponentActivity() {
                 locationPermissionRequest.launch(
                     arrayOf(
                         Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION)
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
                 )
             }
         }
     }
 
     @SuppressLint("MissingPermission")
-    fun getLocation() {
+    private fun getLocation() {
         val locationRequest: LocationRequest = LocationRequest.create().apply {
             interval = 60000
             fastestInterval = 30000
@@ -152,9 +141,11 @@ class BaseNavigationActivity : ComponentActivity() {
                 }
             }
         }
-        fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+        fusedLocationProviderClient.requestLocationUpdates(
+            locationRequest,
             locationCallback,
-            Looper.myLooper())
+            Looper.myLooper()
+        )
     }
 
     //region Navigation

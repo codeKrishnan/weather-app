@@ -1,17 +1,7 @@
 package com.example.weatherapp
 
 import android.app.Application
-import com.example.weatherapp.di.ApplicationComponent
-import com.example.weatherapp.di.DaggerApplicationComponent
+import dagger.hilt.android.HiltAndroidApp
 
-class WeatherApplication : Application() {
-
-    lateinit var applicationComponent: ApplicationComponent
-
-    override fun onCreate() {
-        super.onCreate()
-        applicationComponent = DaggerApplicationComponent.factory()
-            .create(this)
-        applicationComponent.inject(this)
-    }
-}
+@HiltAndroidApp
+class WeatherApplication : Application()

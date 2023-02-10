@@ -1,7 +1,6 @@
 package com.example.weatherapp.feature.favouritelocations.screen.widget
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,8 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
@@ -35,14 +34,13 @@ import com.example.weatherapp.feature.favouritelocations.util.Coordinates
 import kotlin.math.roundToInt
 
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun WeatherQuickPreviewWidget(
     shortWeatherItems: List<ShortWeatherInfo>,
     onClick: (Coordinates) -> Unit,
 ) {
     LazyVerticalGrid(
-        cells = GridCells.Adaptive(minSize = 150.dp),
+        columns = GridCells.Adaptive(minSize = 200.dp),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
@@ -132,10 +130,13 @@ fun IconText(
     @DrawableRes iconResource: Int,
     text: String,
     isBrightText: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Row(
+        modifier = Modifier
+            .padding(4.dp),
         horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             modifier = Modifier
@@ -146,9 +147,15 @@ fun IconText(
             tint = BlueTint
         )
         if (isBrightText) {
-            BrightText(text = text)
+            BrightText(
+                text = text,
+                maxLines = maxLines
+            )
         } else {
-            DimText(text = text)
+            DimText(
+                text = text,
+                maxLines = maxLines
+            )
         }
     }
 }
