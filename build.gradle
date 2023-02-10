@@ -16,6 +16,8 @@ buildscript {
         junitVersion = "4.13.2"
         okHttpVersion = "4.10.0"
         hiltVersion = "2.44.2"
+        protobufVersion = '3.21.7'
+        dataStoreVersion = '1.0.0'
     }
 }
 plugins {

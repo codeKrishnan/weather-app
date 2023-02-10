@@ -76,7 +76,6 @@ fun BaseNavigationScreen(
                         } == true,
                         onClick = {
                             navController.navigate(screen.route) {
-
                                 popUpTo(
                                     navController.graph.findStartDestination().id
                                 ) {
@@ -91,9 +90,11 @@ fun BaseNavigationScreen(
             }
         }
     ) { innerPadding ->
-        NavHost(navController,
+        NavHost(
+            navController = navController,
             startDestination = Screen.Home.route,
-            Modifier.padding(innerPadding)) {
+            modifier = Modifier.padding(innerPadding)
+        ) {
             composable(route = Screen.Home.route) {
                 HomeScreen()
             }
