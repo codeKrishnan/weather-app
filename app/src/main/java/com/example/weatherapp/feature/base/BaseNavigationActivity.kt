@@ -58,7 +58,6 @@ class BaseNavigationActivity : ComponentActivity() {
                 BaseNavigationScreen(
                     FavouriteScreen = {
                         FavouriteLocationsScreen(
-                            viewModel = viewModel,
                             onWeatherCardClicked = { coordinates ->
                                 navigateToWeatherForecastScreen(coordinates)
                             },
@@ -87,7 +86,6 @@ class BaseNavigationActivity : ComponentActivity() {
             }
         }
         getUserLocationPermission()
-        viewModel.getWeatherInformationOfFavouriteLocations()
     }
 
     private fun getUserLocationPermission() {
