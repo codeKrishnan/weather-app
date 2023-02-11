@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.base
+package com.example.weatherapp.feature.home
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -15,11 +15,11 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat.checkSelfPermission
 import com.example.weatherapp.baseui.theme.WeatherAppTheme
 import com.example.weatherapp.feature.about.screen.AboutScreen
-import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
 import com.example.weatherapp.feature.favouritelocations.screen.FavouriteLocationsScreen
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
+import com.example.weatherapp.feature.home.screen.HomeScreen
 import com.example.weatherapp.feature.mylocation.MyLocationViewModel
-import com.example.weatherapp.feature.mylocation.screen.HomeScreen
+import com.example.weatherapp.feature.mylocation.screen.MyLocationScreen
 import com.example.weatherapp.feature.weatherforecast.WeatherForecastActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -29,8 +29,12 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * A [ComponentActivity] that hosts the main screen composables of the app.
+ * For example, [MyLocationScreen], [MyLocationScreen] and [AboutScreen]
+ */
 @AndroidEntryPoint
-class BaseNavigationActivity : ComponentActivity() {
+class HomeActivity : ComponentActivity() {
 
     private val myLocationViewModel: MyLocationViewModel by viewModels()
 
@@ -56,7 +60,7 @@ class BaseNavigationActivity : ComponentActivity() {
 
         setContent {
             WeatherAppTheme {
-                BaseNavigationScreen(
+                HomeScreen(
                     FavouriteScreen = {
                         FavouriteLocationsScreen(
                             onWeatherCardClicked = { coordinates ->
@@ -67,8 +71,8 @@ class BaseNavigationActivity : ComponentActivity() {
                             }
                         )
                     },
-                    HomeScreen = {
-                        HomeScreen(
+                    MyLocationScreen = {
+                        MyLocationScreen(
                             viewModel = myLocationViewModel,
                             onShowWeatherForecastClicked = { coordinates ->
                                 navigateToWeatherForecastScreen(coordinates)

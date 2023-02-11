@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.base.screen
+package com.example.weatherapp.feature.home.screen
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
@@ -38,8 +38,8 @@ sealed class Screen(
 }
 
 @Composable
-fun BaseNavigationScreen(
-    HomeScreen: @Composable () -> Unit,
+fun HomeScreen(
+    MyLocationScreen: @Composable () -> Unit,
     FavouriteScreen: @Composable () -> Unit,
     AboutScreen: @Composable () -> Unit,
 ) {
@@ -96,7 +96,7 @@ fun BaseNavigationScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = Screen.Home.route) {
-                HomeScreen()
+                MyLocationScreen()
             }
             composable(route = Screen.Favourites.route) {
                 FavouriteScreen()

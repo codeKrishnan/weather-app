@@ -10,7 +10,7 @@ import com.example.weatherapp.feature.mylocation.MyLocationViewModel
 import com.example.weatherapp.feature.mylocation.screen.widget.MyLocationScreenContent
 
 @Composable
-fun HomeScreen(
+fun MyLocationScreen(
     viewModel: MyLocationViewModel,
     onShowWeatherForecastClicked: (Coordinates) -> Unit,
     onLocationPermissionUpdateClicked: () -> Unit,
