@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.home.screen
+package com.example.weatherapp.feature.mylocation.screen
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.padding

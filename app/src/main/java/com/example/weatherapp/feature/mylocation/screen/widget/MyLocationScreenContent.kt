@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.home.screen.widget
+package com.example.weatherapp.feature.mylocation.screen.widget
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -32,12 +32,12 @@ import com.example.weatherapp.feature.favouritelocations.model.WeatherType
 import com.example.weatherapp.feature.favouritelocations.model.getImage
 import com.example.weatherapp.feature.favouritelocations.screen.widget.IconText
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
-import com.example.weatherapp.feature.home.screen.Bullet
+import com.example.weatherapp.feature.mylocation.screen.Bullet
 import com.example.weatherapp.util.getCurrentDate
 import kotlin.math.roundToInt
 
 @Composable
-fun HomeScreenContent(
+fun MyLocationScreenContent(
     shortWeatherInfo: ShortWeatherInfo,
     onShowWeatherForecastClicked: (Coordinates) -> Unit,
 ) {
@@ -133,7 +133,7 @@ fun HomeScreenContent(
 @Composable
 fun HomeScreenContentPreview() {
     WeatherAppTheme {
-        HomeScreenContent(
+        MyLocationScreenContent(
             shortWeatherInfo = ShortWeatherInfo(
                 coordinates = Coordinates(
                     latitude = "12",

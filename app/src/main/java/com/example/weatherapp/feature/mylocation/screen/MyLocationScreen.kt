@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.home.screen
+package com.example.weatherapp.feature.mylocation.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -6,8 +6,8 @@ import com.example.weatherapp.R
 import com.example.weatherapp.baseui.widget.ErrorIndicator
 import com.example.weatherapp.baseui.widget.LoadingIndicator
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
-import com.example.weatherapp.feature.home.MyLocationViewModel
-import com.example.weatherapp.feature.home.screen.widget.HomeScreenContent
+import com.example.weatherapp.feature.mylocation.MyLocationViewModel
+import com.example.weatherapp.feature.mylocation.screen.widget.MyLocationScreenContent
 
 @Composable
 fun HomeScreen(
@@ -34,7 +34,7 @@ fun HomeScreen(
             LoadingIndicator()
         }
         is MyLocationViewModel.HomeUIState.Success -> {
-            HomeScreenContent(
+            MyLocationScreenContent(
                 shortWeatherInfo = result.data,
                 onShowWeatherForecastClicked = onShowWeatherForecastClicked
             )

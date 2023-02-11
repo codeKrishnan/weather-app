@@ -1,4 +1,4 @@
-package com.example.weatherapp.feature.home
+package com.example.weatherapp.feature.mylocation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

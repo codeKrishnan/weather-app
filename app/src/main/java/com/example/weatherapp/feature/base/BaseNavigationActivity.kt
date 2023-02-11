@@ -18,8 +18,8 @@ import com.example.weatherapp.feature.about.screen.AboutScreen
 import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
 import com.example.weatherapp.feature.favouritelocations.screen.FavouriteLocationsScreen
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
-import com.example.weatherapp.feature.home.MyLocationViewModel
-import com.example.weatherapp.feature.home.screen.HomeScreen
+import com.example.weatherapp.feature.mylocation.MyLocationViewModel
+import com.example.weatherapp.feature.mylocation.screen.HomeScreen
 import com.example.weatherapp.feature.weatherforecast.WeatherForecastActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
