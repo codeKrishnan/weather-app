@@ -18,6 +18,7 @@ import com.example.weatherapp.feature.about.screen.AboutScreen
 import com.example.weatherapp.feature.base.screen.BaseNavigationScreen
 import com.example.weatherapp.feature.favouritelocations.screen.FavouriteLocationsScreen
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
+import com.example.weatherapp.feature.home.MyLocationViewModel
 import com.example.weatherapp.feature.home.screen.HomeScreen
 import com.example.weatherapp.feature.weatherforecast.WeatherForecastActivity
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -25,12 +26,13 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BaseNavigationActivity : ComponentActivity() {
 
-    private val viewModel: BaseNavigationViewModel by viewModels()
+    private val myLocationViewModel: MyLocationViewModel by viewModels()
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -43,11 +45,10 @@ class BaseNavigationActivity : ComponentActivity() {
                 getLocation()
             }
             else -> {
-                viewModel.onLocationPermissionDenied()
+                myLocationViewModel.onLocationPermissionDenied()
             }
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +69,7 @@ class BaseNavigationActivity : ComponentActivity() {
                     },
                     HomeScreen = {
                         HomeScreen(
-                            viewModel = viewModel,
+                            viewModel = myLocationViewModel,
                             onShowWeatherForecastClicked = { coordinates ->
                                 navigateToWeatherForecastScreen(coordinates)
                             },
@@ -103,7 +104,7 @@ class BaseNavigationActivity : ComponentActivity() {
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION)
                     || shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)
             -> {
-                viewModel.onLocationPermissionDenied()
+                myLocationViewModel.onLocationPermissionDenied()
             }
             else -> {
                 locationPermissionRequest.launch(
@@ -118,24 +119,23 @@ class BaseNavigationActivity : ComponentActivity() {
 
     @SuppressLint("MissingPermission")
     private fun getLocation() {
-        val locationRequest: LocationRequest = LocationRequest.create().apply {
-            interval = 60000
-            fastestInterval = 30000
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        }
+        val locationRequest = LocationRequest.Builder(
+            Priority.PRIORITY_HIGH_ACCURACY,
+            60000
+        ).build()
 
         val locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
                 locationResult.lastLocation?.let {
-                    viewModel.getWeatherDetailsForHome(
+                    myLocationViewModel.getWeatherDetailsForHome(
                         coordinates = Coordinates(
                             "${it.latitude}",
                             "${it.longitude}"
                         )
                     )
                 } ?: run {
-                    viewModel.onLocationFetchFailed()
+                    myLocationViewModel.onLocationFetchFailed()
                 }
             }
         }
