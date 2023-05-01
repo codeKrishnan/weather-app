@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
     id "com.google.protobuf" version "0.8.17"
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -97,6 +98,9 @@ dependencies {
 
     //protobuf
     implementation "com.google.protobuf:protobuf-javalite:$protobufVersion"
+
+    //firebase
+    implementation platform("com.google.firebase:firebase-bom:$firebaseBomVersion")
 }
 
 protobuf {
