@@ -7,24 +7,24 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.weatherapp.feature.base.BaseNavigationViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.weatherapp.baseui.widget.ErrorIndicator
 import com.example.weatherapp.baseui.widget.LoadingIndicator
+import com.example.weatherapp.feature.favouritelocations.FavouriteLocationsViewModel
 import com.example.weatherapp.feature.favouritelocations.screen.widget.SearchBox
 import com.example.weatherapp.feature.favouritelocations.screen.widget.WeatherQuickPreviewWidget
 import com.example.weatherapp.feature.favouritelocations.util.Coordinates
-import com.example.weatherapp.feature.favouritelocations.util.FavouriteLocationsUIState
 
 @Composable
 fun FavouriteLocationsScreen(
-    viewModel: BaseNavigationViewModel,
+    viewModel: FavouriteLocationsViewModel = hiltViewModel(),
     onWeatherCardClicked: (Coordinates) -> Unit,
     onSearchResultSelected: (Coordinates) -> Unit,
 ) {
-    val uiState = viewModel.favouriteLocationsUIState.observeAsState()
+    val uiState = viewModel.favouriteLocationsUIState.collectAsState()
 
     Surface {
         Column(
@@ -53,18 +53,18 @@ fun FavouriteLocationsScreen(
             Spacer(modifier = Modifier.height(18.dp))
 
             when (val state = uiState.value) {
-                FavouriteLocationsUIState.Error -> {
+                FavouriteLocationsViewModel.FavouriteLocationsUIState.Error -> {
                     ErrorIndicator {
                         viewModel.getWeatherInformationOfFavouriteLocations()
                     }
                 }
-                is FavouriteLocationsUIState.Success -> {
+                is FavouriteLocationsViewModel.FavouriteLocationsUIState.Success -> {
                     WeatherQuickPreviewWidget(
                         shortWeatherItems = state.data,
                         onClick = onWeatherCardClicked,
                     )
                 }
-                FavouriteLocationsUIState.Loading, null -> {
+                FavouriteLocationsViewModel.FavouriteLocationsUIState.Loading -> {
                     LoadingIndicator()
                 }
             }
